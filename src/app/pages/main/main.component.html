@@ -1,0 +1,208 @@
+<main>
+    <section class="create-section"
+        data-vide-bg="mp4: assets/video/create, webm: assets/video/create, ogv: assets/video/create">
+        <div class="video-wrapper">
+            <video [muted]="true" [autoplay]="true" playsinline loop id="video">
+                <source src='../../../assets/videos/create.mp4' type="video/mp4">
+                <source src='../../../assets/videos/create.webm' type="video/webm">
+                <source src='../../../assets/videos/create.ogv' type="video/ogg">
+            </video>
+        </div>
+        <div class="col-xs-12 text-wrapper">
+            <span class="title-wrapper">
+                <span class="title" [class.animated]='isCreateScroll'>Створюємо тренди</span>
+            </span>
+            <p class="subtitle">Ми <span>дотримуємося трендів<span class="cross-line"
+                        [class.animated]='isCreateScroll'></span></span>
+            </p>
+            <a class="play-video" href="https://www.youtube.com/embed/MjVSH4ql6Y4" target="_blank"><img
+                    src="../../../assets/images/playVideo.webp" alt=""><br>VIEW VIDEO</a>
+        </div>
+    </section>
+    <section id="about" class="about-us-section">
+        <div class="text-block">
+            <div class="textWrapper">
+                <div class='section-title-box'>
+                    <span class="title" [class.animated]='isAboutScroll'>О, ґорджес Джи. Ворлд!</span>
+                </div>
+                <p class="subtitle">Про нас<span class="cross-line" [class.animated]='isAboutScroll'></span></p>
+                <div class="slogan">
+                    <span>Це як салон краси, <br> тільки набагато краще!</span>
+                </div>
+            </div>
+            <div class="general-info">
+                <span>А ще — це місце сили незрівнянних укладок, ідеальних мейків та легендарних нейл-артів!
+                    <br><br>
+                    G.Bar — це 34 б'юті-бари у 10 країнах, десятки тисяч кіс та укладок, стільки ж мейкапів і вдвічі
+                    більше манікюрів з педикюрами та брів! <br><br> А разом — не злічити скільки дівчат і їхніх
+                    щасливих, гордих і незабутніх історій з Джи.
+                </span>
+            </div>
+        </div>
+        <div class="about-us-image-wrapper">
+            <div class="about-us-image"></div>
+        </div>
+        <div class="mobile-general-info">
+            <div class="slogan">
+                <span>Це як салон краси, <br> тільки набагато краще!</span>
+            </div>
+            <div class="general-info">
+                <span>А ще — це місце сили незрівнянних укладок, ідеальних мейків та легендарних нейл-артів!
+                    <br><br>
+                    G.Bar — це 34 б'юті-бари у 10 країнах, десятки тисяч кіс та укладок, стільки ж мейкапів і вдвічі
+                    більше манікюрів з педикюрами та брів! <br><br> А разом — не злічити скільки дівчат і їхніх
+                    щасливих, гордих і незабутніх історій з Джи.
+                </span>
+            </div>
+        </div>
+    </section>
+    <section class="services-section" id="services" [style.background-color]='bgColor'>
+        <div class="titleWrapper">
+            <div class="top-left-text-block">
+                <div class='section-title-box'>
+                    <span class="title" [class.animated]='isServicesScroll'>Меню Джи. Бар</span>
+                </div>
+                <p class="subtitle">Послуги<span class="cross-line" [class.animated]='isServicesScroll'></span></p>
+            </div>
+            <div class="top-right-text-block">
+                <span>Ніяких кардинальних змін. <br> Ну, хіба що зовсім трішки доленосних.</span>
+            </div>
+        </div>
+        <div class="col-xs-12 servicesSectionSlider" id="servicesSectionSlider">
+            <ul>
+                <ngx-slick-carousel class="carousel slider-for" #slickModal="slick-carousel" [config]="slideConfigServices">
+                    <li ngxSlickItem class="slide" *ngFor="let service of currentGbar?.services; let i=index">
+                        <img [attr.src]='service.icon' alt="">
+                        <span class="slideLabel" [ngStyle]="{'background': service?.btnColor}"
+                            (click)="openService(i)">{{ service?.name | uppercase }}</span>
+                    </li>
+                </ngx-slick-carousel>
+            </ul>
+        </div>
+        <div class="salon-menu-section">
+            <div class="salon-section">
+                <div class="gbars-select">
+                    <i class="uil uil-arrow-circle-down" (click)="menuStatus(true)"></i>
+                    <span (click)="menuStatus(true)">{{ currentGbar?.name }}</span>
+                    <div class="gbar-menu-list" *ngIf="isClicked" [style.height]="isClicked  ? 'auto' : '0px'">
+                        <ul>
+                            <li (click)="changeGbar(curGbars?.name)" (click)="menuStatus(true)" (click)="resetCarousel()"
+                                *ngFor="let curGbars of currentGbars">{{ curGbars?.name }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="services-menu-box">
+                <div class="services-menu">
+                    <ul class="sliderList">
+                        <ngx-slick-carousel class="carousel slider-nav" #slickModal="slick-carousel"
+                            [config]="slideConfigSerMenu" (afterChange)="afterChange($event)">
+                            <li ngxSlickItem class="slide" *ngFor="let service of currentGbar?.services; let i=index"
+                                (click)="getRandom()" (click)="goTo(i)">
+                                <span>{{ service?.name | uppercase }}</span>
+                            </li>
+                        </ngx-slick-carousel>
+                    </ul>
+                </div>
+                <a class="btn-prev" [class.slick-disabled]='isFirst' role="button" (click)="getRandom()" (click)="prev()"></a>
+                <a class="btn-next" [class.slick-disabled]='isLast' role="button" (click)="getRandom()" (click)="next()"></a>
+            </div>
+        </div>
+    </section>
+    <section class="beauty-bar-section" id="beauty-bars">
+        <div class='beauty-bar-section-box' style="background-image: url(../../../assets/images/GbarCheBg-md.webp);">
+            <div class="section-title-box">
+                <span class="title" [class.animated]='isBarsScroll'>Всі Джи. Бари</span>
+            </div>
+            <p class="subtitle">Салони<span class="cross-line" [class.animated]='isBarsScroll'></span></p>
+        </div>
+        <div class="beauty-bars">
+            <div class="beauty-bars-header">
+                <ng-select [(ngModel)]="cityName" name='cityName' (ngModelChange)="onChange($event, false)"
+                    [clearable]="false" [searchable]="false" class="custom select-cities">
+                    <ng-option *ngFor="let city of cities; let i=index" [value]="city?.name">
+                        {{city?.name}}</ng-option>
+                </ng-select>
+            </div>
+            <div class="beauty-bars-info">
+                <div class="beauty-bar" *ngFor="let gbar of currentGbars">
+                    <span class="name">{{ gbar?.name }}</span>
+                    <br>
+                    <span class="address">{{ gbar?.city?.name }}, {{ gbar?.address }}</span>
+                    <br>
+                    <span class="phoneNumber">{{ gbar?.phoneNumber }}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="franchise-section" id="franchise">
+        <div class="textBlock">
+            <div class='section-title-box'>
+                <span class="title" [class.animated]='isFranchiseScroll'>G.Bar World</span><br>
+            </div>
+            <p class="subtitle">Франчайзинг<span class="cross-line" [class.animated]='isFranchiseScroll'></span></p>
+            <span class="slogan">G.Bar - це міжнародна франчайзингова мережа б'юті-барів, яка була заснована у 2015
+                році в Києві.</span><br>
+            <span class="general-info">
+                Ми переосмислили класичний ринок салонів краси і створили новий модний простір - наш beauty
+                bar.<br><br><br>
+                Джи. адепт ідеальних макіяжів, укладок, плетінь, манікюру та педикюру, а ще фарбувань і стрижок в
+                рамках G.Lab.<br><br>
+                G.Bar - це атмосфера нескінченної вечірки, економія твого часу і висока якість послуг.<br><br>
+                Це сильний міжнародний бренд, у якого є комплекс стандартів, лояльні партнери, власне ПЗ, мобільний
+                додаток, пакет підтримки.<br><br><br>
+                Хочеш відкрити G.Bar у своєму місті - переходь на сайт, щоб дізнатися подробиці про купівлю
+                франшизи!<br>
+            </span><br>
+            <a href="https://gbarworld.com/" class="more-info" target="_blank"> ПЕРЕЙТИ </a>
+        </div>
+        <div class='animatedBlock col-xs-12'
+            data-vide-bg="mp4: assets/video/g_universe, webm: assets/video/g_universe, ogv: assets/video/g_universe"
+            data-vide-options="position: 0 0">
+            <video [autoplay]='true' [loop]='true' [muted]='true' id="video">
+                <source src='../../../assets/videos/g_universe.mp4' type="video/mp4">
+                <source src='../../../assets/videos/g_universe.webm' type="video/webm">
+                <source src='../../../assets/videos/create.ogv' type="video/ogg">
+            </video>
+        </div>
+        <div class="mobile-franchise-text">
+            <span class="slogan">G.Bar - це міжнародна франчайзингова мережа б'юті-барів, яка була заснована у 2015
+                році в Києві.</span><br>
+            <span class="general-info">
+                Ми переосмислили класичний ринок салонів краси і створили новий модний простір - наш beauty
+                bar.<br><br><br>
+                Джи. адепт ідеальних макіяжів, укладок, плетінь, манікюру та педикюру, а ще фарбувань і стрижок в
+                рамках G.Lab.<br><br>
+                G.Bar - це атмосфера нескінченної вечірки, економія твого часу і висока якість послуг.<br><br>
+                Це сильний міжнародний бренд, у якого є комплекс стандартів, лояльні партнери, власне ПЗ, мобільний
+                додаток, пакет підтримки.<br><br><br>
+                Хочеш відкрити G.Bar у своєму місті - переходь на сайт, щоб дізнатися подробиці про купівлю
+                франшизи!<br>
+            </span><br>
+            <a href="https://gbarworld.com/" class="more-info" target="_blank"> ПЕРЕЙТИ </a>
+        </div>
+        <div></div>
+    </section>
+    <div class="modal-window" *ngIf="isTimeOut">
+        <div class="modal-box">
+            <div class="md-header">
+                <p class="modal-title">Привіт!</p>
+                <p class="modal-subtitle">Будь ласка, вибери місто з списку.<br>Це допоможе відобразити коректну
+                    інформацію для тебе.</p>
+                <span aria-hidden="true" (click)="closeMainModal()">&times;</span>
+            </div>
+            <div class="md-body">
+                <div>
+                    <label for="city">Місто</label>
+                    <input type="text" [(ngModel)]="cityName" name="cityName" id='city' class="city" readonly (click)="menuStatus(false)">
+                    <ul *ngIf="isModalClick">
+                        <li *ngFor="let city of cities" (click)="menuStatus(false)" (click)="changeCity(city?.name)">{{ city?.name }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="md-footer" (click)="onChange(cityName, true)" (click)="closeMainModal()">
+                <span>Вибрати</span>
+            </div>
+        </div>
+    </div>
+</main>

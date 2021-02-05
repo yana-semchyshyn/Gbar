@@ -1,0 +1,300 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
+@import '../../../assets/styles/fonts';
+
+.header{
+    padding: 15px 20px;
+    @include flexbox (flex, row, space-between, center);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: $darkPink;
+    p{
+        font-size: 26px;
+        line-height: 40px;
+        margin: 0;
+        font-family: "AdleryPro";
+        color: #fefefe;
+    }
+    .createNewGBarBtn{
+        width: 150px;
+        height: 40px;
+        font-size: 16px;
+        font-family: 'CeraPROBold';
+        color: $lightPink;
+        background-color:  rgb(0, 83, 198);
+    }
+}
+.main-box{
+    overflow: auto;
+    background-color: #fefefe;
+    padding: 20px;
+    border: 2px solid $darkPink;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    input{
+        border: 2px solid $lightPink;
+        color: $darkPink;
+        font-family: 'CeraPROLight';
+        &::placeholder{
+            color: rgb(0, 83, 198);
+            font-weight: bolder;
+        }
+        &:focus{
+            box-shadow: none;
+        }
+    }
+    hr{
+        height: 2px;
+        background-color: $pink;
+    }
+}
+
+table{
+    border: none;
+    overflow: auto;
+    th{
+        font-size: 20px;
+        color: rgb(0, 83, 198);
+        background-color: transparent;
+        border-top: none;
+        &:first-child{
+            border-left: none;
+        }
+        &:last-child{
+            border-right: none;
+        }
+    }
+    td{
+        height: 200px;
+        overflow: hidden;
+        align-items: center;
+        vertical-align: middle;
+        color: $darkPink;  
+        &:first-child{
+            border-left: none;
+        }
+        &:last-child{
+            border-right: none;
+        }
+        div{
+            width: 100%;
+            margin: 0 auto;
+        }
+        img{
+            height: 80px;
+            width: 80px;
+        }
+        .btn{
+            color: rgb(0, 83, 198);
+            font-size: 24px;
+            &:focus{
+                box-shadow: none;
+            }
+            &:hover{
+                font-size: 26px;
+            }
+        }
+    }
+}
+.addModal{
+    width: 100%;
+    height: 100%;
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(11, 11, 11, 0.5);
+    overflow-y: auto;
+    .addModal-box{
+        width: 80%;
+        height: auto;
+        margin: auto;
+        background-color: #ffffff;
+        border-radius: 5px;
+        .modal-header{
+            background-color: rgb(0, 83, 198);
+            p{
+                font-size: 26px;
+                line-height: 40px;
+                margin: 0;
+                font-family: "AdleryPro";
+                color: #fefefe;
+            }
+            button{
+                background-color: transparent;
+                font-size: 26px;
+                color: #fefefe;
+                border: none;
+                outline: none;
+            }
+        }
+        .modal-body{
+            .form-group{
+                margin-bottom: 15px;
+                label{
+                margin-bottom: 7px;
+                font-size: 16px;
+                font-family: 'CeraPROBold';
+                color: rgb(0, 83, 198);
+                }
+                select, input{   
+                    color: $darkPink;     
+                  &:focus{
+                    border: lightgray;
+                    box-shadow: 0 0 5pt $lightPink;
+                  }
+                }
+            }
+            .addMenuItems-box{
+                margin-top: 10px;
+                width: 100%;
+                @include flexbox (flex, row, space-between, center);
+                .form-group{
+                    width: calc(100% / 3);
+                    &:nth-child(2)+label{
+                        padding-left: 13px;
+                    }
+                }
+                button{
+                    margin-top: 15px;
+                    width: 170px;
+                    font-size: 14px;
+                    font-family: 'CeraPROBold';
+                    color: $lightPink;
+                    background-color:  rgb(0, 83, 198);
+                }
+            }
+            .addedMenuItems{
+                padding: 10px;
+                border: 2px dotted $lightPink;
+                font-family: 'CeraPROBold';
+                column-count: 2;
+                column-fill: auto;
+                min-height: 100px;
+                position: relative;
+                p{
+                    margin-bottom: 7px;
+                    color: rgb(0, 83, 198);
+                    span{
+                        cursor: pointer;
+                        color: $darkPink;
+                    }
+                }
+                button{
+                    width: 170px;
+                    font-size: 14px;
+                    font-family: 'CeraPROBold';
+                    color: $lightPink;
+                    background-color:  rgb(0, 83, 198);
+                    position: absolute;
+                    right: 10px;
+                    bottom: 10px;
+                }
+            }
+            .chosen-services-box{
+                column-count: 4;
+                column-fill: auto;
+                min-height: 30px;
+                width: 100%;
+                padding-left: 3px;
+                div .chosen-service{
+                    display: inline-block;
+                    color: rgb(0, 83, 198);
+                    font-size: 14px;
+                    min-height: 20px;
+                    margin-bottom: 6px;
+                    font-family: 'CeraPROBold';
+                    white-space: nowrap;
+                    width: auto;
+                    &::before{
+                        content: 'ᐳ';
+                        display: inline-block;
+                        font-size: 10px;
+                        font-weight: bold;
+                        margin-right: 5px;
+                        transform: rotate(90deg);
+                    }
+                    .deleteService{
+                        cursor: pointer;
+                        padding-left: 10px;
+                        line-height: 15px;
+                        font-size: 20px;
+                        color: $darkPink;
+                    }
+                    ul{
+                        margin-top: 5px;
+                        padding: 15px 5px;
+                        width: 450px;
+                        white-space: normal;
+                        min-height: 30px;
+                        color: $darkPink;
+                        border: 1px solid rgba(0, 139, 198, 0.864);
+                        border-radius: 4px;
+                        background-color: #ffffff;
+                        position: relative;
+                        z-index: 3000;
+                        i{
+                            position: absolute;
+                            top: 0;
+                            right: 3px;
+                            color: rgb(0, 83, 198);
+                            font-size: 14px;
+                            &:focus{
+                                box-shadow: none;
+                            }
+                            &:hover{
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .modal-footer{
+            button{
+                min-width: 80px;
+                height: 36px;
+                background-color: transparent;
+                font-size: 16px;
+                font-family: 'CeraPROBold';
+                color: #fefefe;
+                border: none;
+                outline: none;  
+            }
+            button:focus{
+                box-shadow: none;
+            }
+            .add, .edit{
+                background-color: $pink;
+                &:hover{
+                    background-color: $darkPink;
+                }
+            }
+            .close{
+                background-color: rgb(0, 83, 198);       
+            }
+        }
+    }
+}
+.deleteModal{
+    @include flexbox (flex, row, center, center);
+    button{
+        margin-right: 5px;
+        width: 130px;
+        height: 50px;
+        color: #fefefe;
+        font-family: 'CeraPROBold';
+    }
+    .dismiss{
+        background-color: gray;
+        &:hover{
+            background-color: rgb(93, 90, 90);     
+        }
+    }
+    .delete{
+        background-color: #9074a3;
+        &:hover{
+            background-color: #8a5da7;    
+        }
+    }
+}

@@ -1,0 +1,104 @@
+<div class="container header">
+    <p>Вакансії</p>
+    <button type="button" class="btn btn-block" (click)="openModal(add, modalLG)">Додати вакансію</button>
+</div>
+<div class="container main-box">
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="так буде швидше.." [(ngModel)]="searchName"
+                name="searchName">
+        </div>
+    </form>
+    <hr>
+    <div style="height: 490px; overflow: scroll">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col" style="width:6%">№</th>
+                    <th scope="col" style="width:10%">Місто</th>
+                    <th scope="col" style="width:15%;">Назва</th>
+                    <th scope="col" style="width:20%;">Зображення</th>
+                    <th scope="col" style="width:35%;">Деталі</th>
+                    <th scope="col" style="width:7%"></th>
+                    <th scope="col" style="width:7%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let vacancy of vacancies | search: searchName; let i=index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ vacancy.city?.name }}</td>
+                    <td>{{ vacancy?.name }}</td>
+                    <td style="text-align: center;"><img [attr.src]='vacancy.contentFirstImg'><img
+                            [attr.src]='vacancy.contentSecondImg'></td>
+                    <td>{{ vacancy?.description }}</td>
+                    <td style='text-align: center;'>
+                        <button (click)="editVacancy(vacancy)" (click)="openModal(add, modalLG)" class="btn"><i
+                                class="uil uil-pen"></i></button>
+                    </td>
+                    <td style='text-align: center;'>
+                        <button (click)="openModal(delete, modalSM)" (click)="deleteVacancy(vacancy)" class="btn"><i
+                                class="uil uil-trash-alt"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<ng-template #add>
+    <div class="addModal">
+        <div class="modal-header">
+            <p class="modal-title pull-left">Додай вакансію</p>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="resetForm()"
+                (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="vacancyCityName">Місто</label>
+                <select (change)="setCity()" [(ngModel)]="vacancyCityName" name="vacancyCityName" class="form-control"
+                    id="vacancyCityName">
+                    <option *ngFor="let city of cities">
+                        {{ city?.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="vacancyName">Назва</label>
+                <input [(ngModel)]="vacancyName" name="vacancyName" type="text" class="form-control"
+                    id="vacancyName">
+            </div>
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="vacancyFirstImg"
+                        (change)="uploadFile($event, true)">
+                    <label class="custom-file-label" for="vacancyFirstImg">Обери зображення...</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="vacancySecondImg"
+                        (change)="uploadFile($event, false)">
+                    <label class="custom-file-label" for="vacancySecondImg">Обери зображення...</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="vacancyDescription">Опис</label>
+                <textarea style="min-height: 200px;" [(ngModel)]="vacancyDescription" name="vacancyDescription"
+                    class="form-control" id="vacancyDescription"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn close" (click)="resetForm()" (click)="modalRef.hide()">Закрити</button>
+            <button *ngIf="!isEdited" type="button" class="btn add" (click)="addVacancy()"
+                (click)="resetForm()">Додати</button>
+            <button *ngIf="isEdited" (click)="updateVacancy()" type="button" class="btn edit">Зберегти</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #delete>
+    <div class="modal-body deleteModal">
+        <button type="button" class="btn dismiss" (click)="deleteSubmit(false)">Відмінити</button>
+        <button type="button" (click)="deleteSubmit(true)" class="btn delete">Видалити</button>
+    </div>
+</ng-template>

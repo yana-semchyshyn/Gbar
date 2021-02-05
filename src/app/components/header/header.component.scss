@@ -1,0 +1,929 @@
+@import '../../../assets/styles/mixins';
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/fonts';
+
+header{
+    height: auto;
+    margin-right: 20px;
+    padding: 0 20px;
+    width: calc(100%-20px);
+    .mobile-menu-opener{
+        display: none;
+        height: 35px;
+        width: auto;
+        @include flexbox (flex, row, flex-start, center);
+        .mobile-burger{
+            display: none;
+            position: relative;
+            width: 24px;
+            height: 2px;
+            background: #0d0d0d;
+            top: 6px;
+            margin-right: 19px;
+            &::before, &::after{
+                @extend .mobile-burger;
+                display: block;
+                content: '';
+                position: absolute;
+                left: 0;
+                top: -16px;
+            }
+            &::after{
+                top: -8px;
+            }
+        }
+        img{
+            display: none;
+            height: 35px;
+            width: 120px;
+        }
+    }
+    ul{
+        width: 100%;
+        height: auto;
+        list-style: none;
+        li{
+            padding: 20px 0;
+            height: auto;
+            text-align: center;
+            a{
+                cursor: pointer;
+                font-family: 'CeraPROBold';
+                font-size: 14px;
+                letter-spacing: 0.8px;
+                color: rgb(86, 86, 86);
+                writing-mode: vertical-lr;
+                transform: rotate(180deg);
+            }
+            a:visited{
+                color: rgb(86, 86, 86);
+            }
+            img{
+                height: 120px;
+                width: 35px;
+                transform: rotate(180deg);
+            }
+        }
+    }
+    .header-buttons{
+        width: 738px;
+        height: 70px;
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        right: 0;
+        @include flexbox (flex, row, flex-start, center);
+        position: fixed;
+        z-index: 999;
+        cursor: pointer;
+        .app{
+            width: 334px;
+            height: 100%;
+            line-height: 70px;
+            background-color: $darkPink;
+            vertical-align: middle;
+            padding: 5px 0 5px 60px;
+            div{
+                width: 200px;
+                height: 60px;
+                background: url(../../../assets/images/apple-logo.webp) no-repeat center center;
+                background-size: cover;
+            }
+        }
+        .online-order{
+            width: 334px;
+            height: 100%;
+            text-align: center;
+            line-height: 70px;
+            background-color: $pink;
+            font-family: 'CeraPROBold';
+            font-size: 16px;
+            color: white;
+        }
+        .profile{
+            width: 70px;
+            height: 100%;
+            text-align: center;
+            line-height: 70px;
+            background-color: $darkPink;
+            i{
+                font-size: 40px;
+                color: white;
+            }
+        }
+    }
+}
+.mobile-menu{
+    height: 100vh;
+    position: absolute;
+    top: -10000px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background: url(../../../assets/images/mobileMenu_bcg.webp) no-repeat center;
+    background-size: cover;
+    z-index: 999999;
+    .close-menu{
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        left: 20px;
+        top: 15px;
+        z-index: 100;
+        cursor: pointer;
+        &::before, &::after{
+            transform: rotate(45deg);
+            left: 0;
+            position: absolute;
+            display: block;
+            content: '';
+            background: #ffffff;
+            width: 30px;
+            height: 2px;
+            top: 15px;
+        }
+        &::after{
+            transform: rotate(-45deg);
+        }
+    }
+    div{
+        position: absolute;
+        width: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        max-height: 520px;
+        @include flexbox (flex, column, flex-start, center);
+        ul{
+            position: relative;
+            top: 0;
+            font-size: 22px;
+            li:first-child{
+                height: 60px;
+                font-size: 42px;
+                margin-bottom: 20px;
+                img{
+                    width: 140px;
+                    height: 40px;
+                }
+            }
+            li:not(:first-child){
+                letter-spacing: normal;
+                text-transform: capitalize;
+                margin-bottom: 10px;
+            }
+            li{
+                height: 31.2px;
+                line-height: 31.2px;
+                a{
+                    cursor: pointer;
+                    color: #ffffff;
+                    font-family: 'CeraPROBold';
+                }
+            }
+        }
+        .menu-app-wrapper{
+            width: 100%;
+            height: 50px;
+            position: relative;
+            a img{
+                width: 200px;
+                vertical-align: middle;
+            }
+        }
+    }
+    &.slide-up {
+        transition: all .5s ease-in-out;
+        transform: translateY(-100%)
+    }
+    &.slide-down {
+        transition: all .5s ease-in-out;
+        transform: translateY(0)
+    }
+}
+.aboutServiceModal{
+    position: fixed;
+    flex-direction: row-reverse;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #ffffff;
+    z-index: 9999;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    .md-header{
+        display: inline-block;
+        width: auto;
+        height: 70px;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000000;
+        border: none;
+        @include flexbox (flex, row, flex-start, flex-start);
+        .hide{
+            cursor: pointer;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            color: #ffffff;
+            font-size: 30px;
+            background-color: $pink;
+        }
+        .prev, .next{
+            width: 70px;
+            height: 100%;
+            background-color: $darkPink;
+            span{
+                width: 54px;
+                height: 15px;
+                margin: 28px 8px;
+            }
+        }
+        .prev span{
+            background-image: url(../../../assets/images/prevArrow.svg);
+            background-repeat: no-repeat;
+        }
+        .next{
+            border-left: 1px solid rgb(91, 67, 71);
+            span{
+                background-image: url(../../../assets/images/nextArrow.svg);
+                background-repeat: no-repeat;
+            }
+        } 
+    }
+    .servicesSectionSlider{
+        width: calc(100% - 40px);
+        height: calc(100% - 40px);
+        margin: 20px;
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        ul{
+            position: absolute;
+            display: flex;
+            flex-wrap: nowrap;
+            .slide:focus{
+                outline: none;
+                border: none;
+            }
+            li{
+                width: 100vw;
+                height: 98vh;
+                margin-right: 200px;
+                position: relative;
+                flex: 0 0 auto;
+                cursor: pointer;
+                @include flexbox (flex, row, flex-start, flex-start);
+               div{
+                   width: 33%;
+                   height: 100%;
+                    &:first-child{
+                        height: 50%;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    } 
+                    &:nth-child(2){
+                        height: 100%;
+                        @include flexbox (flex, column, flex-start, flex-start);
+                        img{
+                            width: 100%;
+                            height: 80%;
+                            object-fit: fill;
+                        }
+                        .emptySpace{
+                            width: 100%;
+                            height: 10%;
+                            background-color: rgb(247, 238, 239);
+                        }    
+                    }
+                    &:last-child{
+                        background-color: $lightPink;
+                        padding: 139px 25px 40px 25px;
+                        text-align: center;
+                        .serviceTitle{
+                            font-size: 24px;
+                            margin-bottom: 15px;
+                            font-family: 'CeraPROBold';
+                        }
+                        img{
+                            display: none;
+                        }
+                        .serviceSubtitle{
+                            width: calc(100% - 25px);
+                            height: auto;
+                            font-size: 12px;
+                            margin-bottom: 27px;
+                            font-family: 'CeraPROBold';
+                            @include flexbox (flex, row, space-between, flex-start);
+                            span:first-child{
+                                display: inline-block;
+                                text-align: left;
+                                width: 58.3%;
+                            }
+                            span:last-child{
+                                display: inline-block;
+                                text-align: right;
+                                width: 41.7%;
+                                padding-right: 15px;
+                            }
+                        }
+                        .menu-box{
+                            width: calc(100% - 25px);
+                            height: 357px;
+                            padding: 0;
+                            overflow-y: auto;
+                            div{
+                                width: 100%;
+                                height: auto;
+                                padding: 0;
+                                margin-bottom: 22px;
+                                @include flexbox (flex, row, space-between, center);
+                                span{
+                                    display: inline-block;
+                                    font-size: 18px;
+                                    line-height: 1.33;
+                                    font-family: 'CeraPROLight';
+                                    white-space: nowrap;
+                                    margin-right: 15px;
+                                    &:first-child{
+                                        width: 58.3%;
+                                        text-align: left;
+                                        white-space: pre-wrap;
+                                    }
+                                }
+                                .price{
+                                    width: 41.7%;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: space-between;
+                                    align-items: flex-end;
+                                    margin-bottom: 0;
+                                    span{
+                                        width: auto;
+                                    }
+                                }
+                            }
+                        }
+                    }
+               }
+            }
+        }
+    }
+}
+.loginModal{
+    position: fixed;
+    flex-direction: row-reverse;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #ffffff;
+    z-index: 9999;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    .md-header{
+        width: 100%;
+        height: 70px;
+        position: relative;
+        text-align: center;
+        font-family: 'CeraPROBold';
+        color: #FFF;
+        background-color: $pink;
+        span:first-child{
+            transform: rotate(-45deg);
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            cursor: pointer;
+            margin: auto;
+            width: 12px;
+            height: 12px;
+            border-top: 2px solid #FFF;
+            border-left: 2px solid #FFF;
+        }
+        span:last-child{
+            font-size: 16px;
+            letter-spacing: 0.89px;
+            text-transform: uppercase;
+            line-height: 70px;
+        }
+    }
+    .login-box, .signUp-box{
+        width: 100%;
+        padding-top: 5px;
+        height: 77vh;
+        overflow: auto;
+        margin: 40px auto;
+        text-align: center;
+        .icon{
+            font-size: 26px;
+        }
+        .login-title{
+            width: 100%;
+            text-align: center;
+            margin: 10px 0;
+            font-family: 'CeraPROBold';
+            font-size: 24px;
+        }
+        form{
+            margin: 10px auto;
+            width: 400px;
+            .form-group{
+                text-align: left;
+                margin-bottom: 20px;
+                label{
+                    font-size: 14px;
+                    line-height: 2.14;
+                    color: #0b0b0b;
+                    font-family: 'CeraPROBold';
+                }
+                input, select{
+                    border: 1px solid #ede8e8;
+                    height: 40px;
+                    border-radius: 3px;
+                    padding: 0 10px;
+                    font-size: 14px;
+                    font-family: 'CeraPROLight';
+                    color: #0b0b0b;
+                    letter-spacing: 0.7px;
+                    &::placeholder{
+                        color: lightgray;
+                    }
+                    &:focus{
+                        border-color: $pink;
+                        box-shadow: none;
+                    }
+                }
+                .password-field{
+                    position: relative;
+                    i{
+                        cursor: pointer;
+                        position: absolute;
+                        top: 10px;
+                        right: 5px;
+                        font-size: 18px;
+                        color: #888787;
+                    }
+                }
+                .signUp-btn{
+                    cursor: pointer;
+                    font-size: 14px;
+                    line-height: 2.14;
+                    color: #f19fc1;
+                    font-family: 'CeraPROBold';
+                }
+            }
+        }
+    }
+    .signUp-box{
+        margin: 20px auto;
+        form{
+            margin: 10px auto;
+            width: 400px;
+            .form-group{
+                margin-bottom: 10px;
+            }
+        }
+    }
+    .md-footer{
+        width: 100%;
+        margin-top: 50px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        button{
+            width: 100%;
+            height: 70px;
+            line-height: 70px;
+            font-size: 16px;
+            font-family: 'CeraPROBold';
+            letter-spacing: 0.89px;
+            color: #FFF;     
+            text-align: center;  
+            border: none;
+            background: #3d5b97;
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+}
+.onlineOrderModal{
+    @extend .loginModal;
+    overflow-y: auto;
+    .md-header{
+        span:nth-child(2){
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 18px;
+            bottom: 0;
+            font-size: 30px;
+        }
+    }
+    .select-container{
+        height: auto;
+        padding-bottom: 25px;
+        .select-title{
+            width: 100%;
+            text-align: center;
+            margin: 25px 0;
+            font-family: 'CeraPROBold';
+            font-size: 24px;
+            line-height: 1.25;
+        }
+        .select-box-wrapper{
+            padding: 0 30px;
+            @include flexbox (flex, row, flex-start, center);
+            flex-wrap: wrap;
+            .select-box{
+               width: calc(100% / 3);
+               height: 200px;
+               @include flexbox (flex, column, flex-start, center);
+               cursor: pointer;
+                .img-wrapper{
+                    position: relative;
+                    .select-icon{
+                      height: 100px;
+                      width: 100px;
+                      border-radius: 50%;
+                      object-fit: cover;
+                    }
+                    .chosen-category{
+                        position: absolute;
+                        top: 3px;
+                        right: 3px;
+                        font-size: 18px;
+                        background: $pink;
+                        padding: 5px;
+                        width: 27px;
+                        height: 27px;
+                        border-radius: 50%;
+                        color: #FFF;
+                        font-weight: 100;
+                        i::before{
+                            margin-left: 0;
+                        }
+                    }
+                }
+                .select-name, .gbar-address{
+                    @extend .select-title;
+                    margin: 0;
+                    font-size: 14px;
+                    line-height: 2.14;
+                }
+                .gbar-address{
+                    font-family: 'CeraPROLight';
+                    line-height: 1.29;
+                }
+            }
+        }
+    }
+    .select-services-container{
+        width: 100%;
+        height: auto;
+        padding-bottom: 180px;
+        @extend .select-container;
+        .select-services-box{
+            margin: 0 auto;
+            @include flexbox (flex, column, flex-start, center);
+            width: 450px;
+            .services{
+                width: 100%;
+                height: auto;
+                padding: 15px 0;
+                border: 1px solid #e7e7e7;
+                border-radius: 3px;
+                cursor: pointer;
+                @include flexbox (flex, row, flex-start, center);
+                &:not(:last-child){
+                    margin-bottom: 20px;
+                }
+                .serviceName{
+                    width: 300px;
+                    font-size: 14px;
+                    line-height: 20px;
+                    padding-left: 20px;
+                    margin-right: 10px;
+                    font-family: 'CeraPROBold';
+                }
+                .service-info{
+                    margin-right: 15px;
+                    font-size: 16px;
+                    white-space: nowrap;
+                    color: #0b0b0b;
+                    text-align: center;
+                    font-family: 'CeraPROLight';
+                }
+                .price{
+                    width: auto;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                    span{
+                        width: auto;
+                    }
+                }
+            }
+        }
+    }
+    .order-form-container{
+        @extend .select-container;
+        padding-bottom: 70px;
+        .select-services-box{
+            form{
+                margin: 20px auto;
+                width: 450px;
+                .form-group{
+                    margin-bottom: 20px;
+                    label{
+                        font-size: 14px;
+                        line-height: 2.14;
+                        color: #0b0b0b;
+                        font-family: 'CeraPROBold';
+                    }
+                    input{
+                        height: 40px;
+                    }
+                    input, textarea{
+                        border: 1px solid #ede8e8;
+                        border-radius: 3px;
+                        padding: 0 10px;
+                        font-size: 14px;
+                        font-family: Arial, Helvetica, sans-serif;
+                        color: #0b0b0b;
+                        &::placeholder{
+                            color: lightgray;
+                        }
+                        &:focus{
+                            box-shadow: none;
+                        }
+                        &:not(:read-only):focus{
+                            border-color: $pink;
+                        }
+                        &:read-only{
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .md-footer{
+        .forward-btn{
+            background-color: $pink;
+        }
+        .onlineOrderBtns{
+            width: 100%;
+            height: 140px;
+            .total-info{
+                padding: 12px 0;
+                height: 70px;
+                background-color: #f8f8f8;
+                @include flexbox (flex, row, flex-start, center);
+                flex-wrap: wrap;
+                div{
+                    width: 50%;
+                    text-align: center;
+                    font-size: 14px;
+                    line-height: 1.71;
+                    font-family: 'CeraPROBold';
+                }
+            }
+            .btns-box{
+                height: 70px;
+                @include flexbox (flex, row, flex-start, center);
+                .addServiceBtn, .orderBtn{
+                    width: 50%;
+                    height: 100%;
+                    text-align: center;
+                    line-height: 70px;
+                }
+                .addServiceBtn{
+                    background-color: $darkPink;
+                }
+                .orderBtn{
+                    background-color: $pink;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1280px){
+    .aboutServiceModal{
+        .servicesSectionSlider{
+            ul li div{
+                height: 100%;
+                &:first-child{
+                    width: 33,33%;
+                } 
+                &:nth-child(2){
+                    display: none;
+                }
+                &:last-child{
+                    width: 66.67%;
+                }
+
+            }
+        }
+    }
+}
+@media screen and (max-width: 1275px) {
+    header{
+        width: 100%;
+        margin-right: 0;
+        height: 70px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+        line-height: 70px;
+        background: #ffffff;
+        @include flexbox (flex, row, space-between, center);
+        .mobile-menu-opener{
+            display: block;
+            @include flexbox (flex, row, space-between, center);
+            .mobile-burger, img{
+                display: block;
+            }
+        }
+        ul{
+            display: none;
+        }
+        .header-buttons{
+            width: auto;
+            position: static;
+            .app, .profile{
+               display: none;
+            }
+            .online-order{
+                background-color: transparent;
+                position: relative;
+                color: #f19fc1;
+                padding-top: 24px;
+                width: auto;
+                line-height: 30px;
+                font-size: 16px;
+            }
+        }
+    }
+    .mobile-menu{
+        top: 0;
+    }
+}
+@media screen and (max-width: 770px){
+    .aboutServiceModal{
+        min-height: 100vh;
+        height: auto;
+        .md-header{
+            width: 100%;
+            .prev, .next{
+                width: calc(50% - 35px);
+                height: 100%;
+                span{
+                    margin: 27.5px calc(50% - 27px);
+                }
+            }
+        }
+        .servicesSectionSlider{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            ul{
+                li{
+                    width: 100vw;
+                    min-height: 100vh;
+                    overflow-y: auto;
+                   div{
+                        &:first-child{
+                            display: none;
+                        }
+                        &:last-child{
+                            width: 100%;
+                            min-height: 100%;
+                            height: auto;
+                            padding: 85px 18px 40px 18px;
+                            img{
+                                display: block;
+                                width: 100%;
+                                height: 250px;
+                                margin-bottom: 40px;
+                                object-fit: fill;
+                            }
+                            .menu-box{
+                                width: 100%;
+                                height: auto;
+                                margin-bottom: 10px;
+                                overflow: visible;
+                            }
+                        }
+                   }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 610px) {
+    header{
+        .header-buttons{
+            .online-order{
+                font-size: 13px;
+                padding: 26px 0;
+                line-height: 20px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 500px){
+    .loginModal{
+        .login-box, .signUp-box{
+            .login-title{
+                padding: 0 30px;
+            }
+            form{
+                width: 300px;
+            }
+        }
+    }
+    .signUp-box{
+        form .form-group{
+            input{
+                height: 30px;
+                line-height: 30px;
+            }
+            .password-field{
+                margin-bottom: 90px;
+            }
+        }
+    }
+    .onlineOrderModal{
+        .select-container .select-box-wrapper{
+            padding: 0 10px;
+        }
+        .select-services-container{
+            .select-services-box{
+                width: 95%;
+                .services{
+                    .serviceName{
+                        width: 60%;
+                        padding-left: 10px;
+                    }
+                }
+            }
+        }
+        .order-form-container .select-services-box{
+            form{
+                width: 100%;
+                padding: 0 20px;
+            } 
+        }
+        .md-footer{
+            .onlineOrderBtns .btns-box .addServiceBtn, .orderBtn{
+                font-size: 14px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 430px) {
+    header .mobile-menu-opener a img{
+        width: 75px;
+        height: 22px;
+    }
+}
+@media screen and (max-width: 375px){
+    .loginModal{
+        .login-box, .signUp-box .login-title{
+            font-size: 18px;
+        }
+    }
+    .aboutServiceModal{
+        .servicesSectionSlider{
+            ul li div{
+                &:last-child{
+                    img{
+                        height: 200px;
+                    }
+                }
+            }
+        }
+    }
+    .onlineOrderModal{
+        .select-container .select-box-wrapper .select-box .img-wrapper{
+            .select-icon{
+              height: 80px;
+              width: 80px;
+            }
+        }
+    }
+}

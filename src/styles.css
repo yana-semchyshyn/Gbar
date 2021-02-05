@@ -1,0 +1,211 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none;
+}
+
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "CeraPROBold";
+  src: url(../fonts/CeraPro/CeraPro-Bold.ttf);
+}
+
+@font-face {
+  font-family: "CeraPROLight";
+  src: url(../fonts/CeraPro/CeraPro-Light.ttf);
+}
+
+@font-face {
+  font-family: "AdleryPro";
+  src: url(../fonts/Adlery-Pro/Adlery-Swash-trial.ttf);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.animated {
+  white-space: nowrap;
+  -webkit-animation-name: move;
+          animation-name: move;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes move {
+  0% {
+    width: 0%;
+    overflow: hidden;
+  }
+  100% {
+    width: 100%;
+    overflow: visible;
+  }
+}
+
+@keyframes move {
+  0% {
+    width: 0%;
+    overflow: hidden;
+  }
+  100% {
+    width: 100%;
+    overflow: visible;
+  }
+}
+
+.title {
+  font-family: 'AdleryPro';
+  white-space: nowrap;
+  display: inline-block;
+  color: #f8d3e3;
+  width: 0%;
+}
+
+.subtitle {
+  height: 71px;
+  line-height: 71px;
+  font-family: 'CeraPROBold';
+  font-size: 50px;
+  position: relative;
+}
+
+.general-info {
+  font-size: 14px;
+  font-family: "CeraPROLight";
+  color: #0d0d0d;
+  line-height: 1.29;
+}
+
+.cross-line {
+  display: inline-block;
+  height: 4px;
+  z-index: 2;
+  background: #f8d3e3;
+}
+
+.section-title-box {
+  width: 100%;
+  height: 130px;
+  line-height: 130px;
+}
+
+span {
+  display: inline-block;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.ng-select .ng-value {
+  position: relative;
+  padding-right: 20px;
+}
+
+.ng-select .ng-value span::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgba(255, 255, 255, 0.2);
+}
+
+.ng-select .ng-dropdown-panel {
+  display: block;
+  background-color: #9074a3;
+  margin: 5px 0;
+  font-size: 18px;
+  font-family: 'CeraPROLight';
+  color: #fefefe;
+  -webkit-transition: .5s ease all;
+  transition: .5s ease all;
+}
+
+.ng-select .ng-dropdown-panel .ng-dropdown-panel-items {
+  padding-right: 10px;
+}
+
+.ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  height: 26px;
+  line-height: 26px;
+  margin: 5px 0;
+  -webkit-transition: .3s ease all;
+  transition: .3s ease all;
+  padding-left: 62px;
+}
+
+.ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@media screen and (max-width: 1275px) {
+  router-outlet + app-main {
+    margin: 20px;
+    width: calc(100%-40px);
+  }
+}
+
+@media screen and (max-width: 770px) {
+  router-outlet + app-main {
+    margin: 20px 0;
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=styles.css.map */

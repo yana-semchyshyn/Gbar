@@ -1,0 +1,197 @@
+<section class="vacancies-section col-xs-12">
+    <div class="section-header">
+        <div class="col-xs-12 text-wrapper">
+            <span class="title-wrapper">
+                <span class="title" [class.animated]='isCreateScroll'>Стань</span>
+            </span>
+            <p class="subtitle"><span>Хочеш стати<span class="cross-line"
+                        [class.animated]='isCreateScroll'></span></span> частиною команди G.Bar?</p>
+            <a class="send-cv" (click)="openModal(true)">НАДІСЛАТИ РЕЗЮМЕ</a>
+        </div>
+    </div>
+</section>
+<section class="vacancies-details-section col-xs-12" *ngIf="isVacancies">
+    <div class="section-header">
+        <div class='section-title-box'>
+            <p class="subtitle">Робота мрії<span class="cross-line"  [class.animated]='isVacanciesScroll'></span></p>
+        </div>
+        <span>Твоя ідеальна робота вже чекає на тебе. <br>Обирай вакансію мрії та скоріше пиши нам: </span>
+    </div>
+    <div class="all-vacancies">
+        <div class="vacancy" *ngFor="let vacancy of currentVacancies; let i = index" (click)="openModal(false, i)">
+            <span>{{ vacancy?.name }}</span>
+            <span>{{ vacancy?.city?.name }}</span>
+        </div>
+    </div>
+</section>
+<section class="advantages-section col-xs-12">
+    <div class="advantages">
+        <span class="title" [class.animated]='isAdvantageScroll'>У нас завжди весело</span><br>
+        <span class="subtitle">Переваги працевлаштування у нас<span class="cross-line"
+                [class.animated]='isAdvantageScroll'></span></span>
+        <div class="advantages-list">
+            <div>
+                <p class="number">01</p>
+                <p class="text">Професійний розвиток в міжнародній компанії</p>
+            </div>
+            <div>
+                <p class="number">02</p>
+                <p class="text">Унікальна корпоративна культура</p>
+            </div>
+            <div>
+                <p class="number">03</p>
+                <p class="text">Конкурентна заробітня плата</p>
+            </div>
+            <div>
+                <p class="number">04</p>
+                <p class="text">Безперервне удосконалення професійних навичок</p>
+            </div>
+            <div>
+                <p class="number">05</p>
+                <p class="text">Знайомство з вау-сервісом та участь у його створенні</p>
+            </div>
+            <div>
+                <p class="number">06</p>
+                <p class="text">Можливість пропонувати та реалізовувати свої ідеї</p>
+            </div>
+            <div>
+                <p class="number">07</p>
+                <p class="text">Класний колектив з 240 дівчат та 11 хлопців</p>
+            </div>
+            <div>
+                <p class="number">08</p>
+                <p class="text">Б'юті-пакет з послугами G.Bar та Oh My Look!</p>
+            </div>
+            <div>
+                <p class="number">09</p>
+                <p class="text">Зрозуміла система кар'єрного росту в компанії</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="insta-section col-xs-12" id="our-works">
+    <div class="instagram-grid">
+        <a href="https://www.instagram.com/explore/tags/ohmylookgbarfamily/" target="_blank"></a>
+        <a href="https://www.instagram.com/explore/tags/ohmylookgbarfamily/" target="_blank"></a>
+        <a href="https://www.instagram.com/explore/tags/ohmylookgbarfamily/" target="_blank"></a>
+        <a href="https://www.instagram.com/explore/tags/ohmylookgbarfamily/" target="_blank"></a>
+        <a href="https://www.instagram.com/explore/tags/ohmylookgbarfamily/" target="_blank"></a>
+        <div class="insta-label">
+            <span>We really like a family</span><br>
+            <span>#ohmylookgbarfamily</span>
+        </div>
+    </div>
+</section>
+<div class="aboutVacanciesModal" *ngIf="isDetails">
+    <div class="main-box">
+        <div class="md-header">
+            <span aria-hidden="true" (click)="closeModal(false)" class="hide">&times;</span> 
+            <div *ngIf="!isFirst"  (click)="prev()"  class="prev">
+                <span></span>
+            </div>
+            <div *ngIf="!isLast" (click)="next()" class="next">
+                <span></span>
+            </div>
+        </div>
+        <div class="vacanciesSectionSlider" id="vacanciesSectionSlider">
+            <ul>
+                <ngx-slick-carousel class="carousel slider" #slickVacancyModal="slick-carousel" [config]="slideConfigVacancies" (afterChange)="afterChange($event)">
+                    <li ngxSlickItem class="slide" *ngFor="let vacancy of currentVacancies; let i=index">
+                        <div>
+                            <img [attr.src]='vacancy?.contentFirstImg'>
+                            <img [attr.src]='vacancy?.contentSecondImg'>
+                        </div>
+                        <div>
+                            <div class="text-header">
+                                <h1>{{ vacancy?.name }}</h1>
+                                <span>{{ vacancy?.city?.name }}</span>
+                            </div>
+                            <div class="description">
+                                <p>{{ vacancy?.description }}</p>
+                            </div>
+                            <a class="send-cv" (click)="openModal(true)">НАДІСЛАТИ РЕЗЮМЕ</a>
+                        </div>
+                    </li>
+                </ngx-slick-carousel>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="modal-window" *ngIf="sendResume">
+    <div class="modal-box">
+        <p class="modal-title">Відправити резюме<span aria-hidden="true" (click)="closeModal(true)">&times;</span></p>
+        <p class="modal-subtitle">Ми завжди шукаємо талановитих людей. Не соромся, це твій час.</p>
+        <form>
+            <div>
+                <label for="vacancyName" class="form-label">Вакансія</label>
+                <select  [(ngModel)]="vacancyName" name="vacancyName" id="vacancyName" class="form-select">
+                    <option selected disabled>Обирай вакансію мрії</option>
+                    <option *ngFor="let vacancy of currentVacancies">{{ vacancy?.name }}</option>
+                </select>
+            </div>
+            <div>
+                <label for="firstName" class="form-label">Ім'я</label>
+                <input type="text" [(ngModel)]="firstName" name="firstName" id="firstName" class="form-control"
+                    placeholder="Ваше ім'я...">
+            </div>
+            <div>
+                <label for="lastName" class="form-label">Прізвище</label>
+                <input type="text" [(ngModel)]="lastName" name="lastName" id="lastName" class="form-control"
+                    placeholder="Ваше прізвище...">
+            </div>
+            <div>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" [(ngModel)]="email" name="email" id="email" class="form-control"
+                    placeholder="Ваш email...">
+            </div>
+            <div>
+                <label for="phoneNumber" class="form-label">Телефон</label>
+                <input type="text" [(ngModel)]="phoneNumber" name="phoneNumber" id="phoneNumber" class="form-control"
+                    placeholder="Ваш номер телефону...">
+            </div>
+            <div>
+                <label for="city" class="form-label">Місто</label>
+                <input type="text" [(ngModel)]="city" name="city" id="city" class="form-control"
+                    placeholder="Ваше місто...">
+            </div>
+            <div>
+                <label for="instagram" class="form-label">Instagram</label>
+                <input type="text" [(ngModel)]="instagram" name="instagram" id="instagram" class="form-control"
+                    placeholder="Ваш Instagram...">
+            </div>
+            <div>
+                <label for="aboutYou" class="form-label">Розкажіть про себе</label>
+                <textarea [(ngModel)]="aboutYou" name="aboutYou" id="aboutYou" class="form-control" rows="3"
+                    placeholder="Розкажіть про себе і чому хочете у нас працювати"></textarea>
+            </div>
+            <label for="file-upload" class="custom-file-upload">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px"
+                    height="32px" viewBox="0 0 25 32" version="1.1">
+                    <desc>Created with sketchtool.</desc>
+                    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="attach">
+                            <g id="Page-1" transform="translate(1.000000, 1.000000)">
+                                <polygon id="Fill-1" fill="#FFFFFF" points="23 30 0 30 0 0 16.5927656 0 23 6.30771249">
+                                </polygon>
+                                <polygon id="Stroke-2" stroke="#F19FC1" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" points="23 30 0 30 0 0 16.5927656 0 23 6.30771249">
+                                </polygon>
+                                <path d="M12,12 L12,21" id="Stroke-4" stroke="#F19FC1" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                <polyline id="Stroke-5" stroke="#F19FC1" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" points="9 14 11.9548238 11 15 14"></polyline>
+                                <polygon id="Stroke-6" stroke="#F19FC1" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" points="23 6 17 6 17 0"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+                Прикріпити резюме
+            </label>
+            <form name="cv" class="cv-form">
+                <input id="file-upload" name="document" type="file" (change)='uploadFile($event)'>
+            </form>
+            <span class="send" (click)=" sendDataToTelegram()">Відправити</span>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+.col-xs-12 {
+    width: 56%; 
+    margin-left: 22%;
+    text-align: justify;
+    h1{
+        font-size: 36px;
+        margin: 40px 0 20px 0;
+    }
+    h1, span{
+        font-family: 'CeraPROBold';
+    }
+    p{
+        font-size: 14px;
+        font-family: 'CeraPROLight';
+        line-height: 1.2rem;
+        margin: 0 0 10px;
+        span{
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+    }
+    ul{
+        list-style: disc;
+        margin-left: 30px;
+        li{
+            font-size: 14px;
+            font-family: 'CeraPROLight';
+        }
+    }
+}
+@media screen and (max-width: 1290px){
+    .col-xs-12{
+        width: 56%; 
+        padding: 20px 0;
+    }
+}
+@media screen and (max-width: 900px){
+    .col-xs-12{
+        width: 100%;
+        margin-left: 0;
+        padding: 20px 20px;
+    }
+}

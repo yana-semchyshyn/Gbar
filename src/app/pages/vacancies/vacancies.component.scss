@@ -1,0 +1,844 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/fonts';
+@import '../../../assets/styles/mixins';
+
+.vacancies-section{
+    width: 100%;
+    height: auto;
+    position: relative;
+    .section-header{
+        width: 100%;
+        height: 100vh;
+        background: url(../../../assets/images/createSection-secondary-bg.webp) no-repeat top center;
+        background-size: cover;
+        padding-top: 170px;
+        .text-wrapper{
+            max-width: 850px;
+            height: 430px;
+            font-weight: bold;
+            margin: 0 auto;
+            text-align: center;
+            color: #ffffff;
+            font-size: 72px;
+            word-spacing: 10px;
+            z-index: 2;
+            .title-wrapper{
+                width: 618px;
+                height: 120px;
+                display: inline-block;
+                text-align: left;
+                .title{
+                    width: 0;
+                    height: 120px;
+                    overflow: hidden;
+                    line-height: 190px;
+                    font-size: 90px;
+                }
+            }
+            p{
+                margin-top: 15px;
+                padding: 20px 0 0 10px;
+                height: 180px;
+                line-height: 80px;
+                font-size: 72px;
+                span:first-child{
+                    position: relative;
+                    .cross-line{
+                        width: 0;
+                        position: absolute;
+                        top: 53%;
+                        left: 2px;
+                    }
+                }
+            }
+            a{
+                display: inline-block;
+                margin-top: 50px;
+                font-size: 16px;
+                background: #f19fc1;
+                color: #ffffff;
+                letter-spacing: .9px;
+                padding: 24px 35px;
+                font-family: 'CeraPROBold';
+                text-transform: uppercase;
+                cursor: pointer;
+            }
+        }
+    }
+}
+.vacancies-details-section{
+    width: 100%;
+    height: auto;
+    padding: 0 75px 50px;
+    margin-top: 20px;
+    @include flexbox (flex, column, flex-start, flex-start);  
+    .section-header{
+        width: 100%;
+        height: 182px;
+        @include flexbox (flex, row, space-between, flex-start);  
+        .section-title-box{
+            width: 50%;
+            height: 100%;
+            padding: 105px 50px 0 23px;
+            .subtitle{
+                width: 280px;
+                height: 71px;
+                position: relative;
+                display: inline-block;
+                .cross-line{
+                    width: 100%;
+                    position: absolute;
+                    top: 53%;
+                    left: 0;
+                }
+            }
+            &+span{
+                display: inline-block;
+                width: 50%;
+                height: 100%;
+                padding: 70px 50px 0 23px;
+                font-size: 24px;
+                line-height: 1.25;
+                font-weight: 700;
+            }
+        }
+    }
+    .all-vacancies{
+        margin-top: 45px;
+        width: 100%;
+        height: auto;
+        @include flexbox (flex, row, space-between, flex-start);  
+        flex-wrap: wrap;
+        .vacancy{
+            background: #f3f3f3;
+            width: 49%;
+            padding: 40px;
+            display: flex;
+            margin-bottom: 25px;
+            @include flexbox (flex, row, space-between, flex-start);  
+            flex-wrap: wrap;
+            span:first-child{
+                font-size: 20px;
+                font-weight: bold;
+                font-style: normal;
+                color: #0b0b0b;
+                width: calc(100% - 150px);
+                padding-right: 20px;
+            }
+            span:last-child{
+                width: 150px;
+                font-size: 14px;
+                font-weight: 300;
+                font-style: normal;
+                color: #0b0b0b;
+            }
+        }
+    }
+}
+.advantages-section{
+    width: 100%;
+    height: auto;
+    .advantages{
+        width: 100%;
+        min-height: 500px;
+        padding: 50px 90px;
+        background-color: $lightPink;
+        .title{
+            width: 684px;
+            display: inline-block;
+            height: 120px;
+            color: #ffffff;
+            font-family: 'AdleryPro';
+            font-size: 70px;
+            line-height: 145px;
+            height: 120px;
+        }
+        .subtitle{
+            width: 852px;
+            position: relative;
+            display: inline-block;
+            color: rgba(255,255,255,.5);
+            font-size: 50px;
+            .cross-line{
+                position: absolute;
+                top: 53%;
+                left: 0;
+                background-color: #ffffff;
+            }
+        }
+        .advantages-list{
+            width: 100%;
+            @include flexbox (flex, row, space-between, flex-start);  
+            flex-wrap: wrap; 
+            div{
+                width: calc(100%/3);
+                height: 97px;
+                margin: 60px 0;
+                padding: 0 10px 0;
+                position: relative;
+                .number{
+                    font-size: 36px;
+                    font-weight: 700;
+                    line-height: 0.72;
+                    color: #ffffff;
+                    margin-bottom: 20px;
+                }
+                .text{
+                    font-size: 20px;
+                    line-height: 1.3;
+                    color: #0b0b0b;
+                    max-width: 290px;
+                }
+                &::before{
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 95px;
+                    height: 4px;
+                    background-color: $darkPink;
+                    left: 10px;
+                    bottom: -20px;
+                }
+            }
+        }
+    }
+}
+.insta-section{
+    width: 100%;
+    height: 820px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    .instagram-grid{
+        position: relative;
+        @include flexbox (flex, row, space-between, flex-start);  
+        flex-wrap: wrap;  
+        a{
+            background-size: cover;
+            background-position: center;
+            &:first-child, &:nth-child(2){
+                width: 49.12%;
+                height: 446px;
+            }
+            &:first-child{
+                background-image: url(../../../assets/images/instaItem-bg-1.webp);
+            }
+            &:nth-child(2){
+                background-image: url(../../../assets/images/instaItem-bg-2.webp);
+            }
+            &:nth-child(3), &:nth-child(5){
+                margin-top: 20px;
+                width: 28.66%;
+                height: 262px;
+                background-image: url(../../../assets/images/instaItem-bg-3.webp);
+            }
+            &:nth-child(4){
+                margin-top: 20px;
+                width: 38.73%;
+                height: 354px;
+                background-image: url(../../../assets/images/instaItem-bg-4.webp);
+            }
+            &:nth-child(5){
+                background-image: url(../../../assets/images/instaItem-bg-5.webp);
+            }
+        }
+        .insta-label{
+            position: absolute;
+            width: 460px;
+            height: 110px;
+            margin-top: 0;
+            margin-left: 0;
+            top: calc(50% - 55px);
+            left: calc(50% - 230px);
+            padding-top: 25px;
+            background-color: #ffffff;
+            text-align: center;
+            font-family: 'CeraPROBold';
+            span:first-child{
+                display: inline-block;
+                font-size: 14px;
+                color: rgba(17, 17, 17,.3);
+                text-transform: uppercase;
+            }
+            span:last-child{
+                display: inline-block;
+                height: 42px;
+                line-height: 42px;
+                font-size: 30px;
+                color: #1c1d21;
+                margin-bottom: -5px;
+            }
+        }
+    }
+}
+.modal-window{
+    position: fixed;
+    display: flex;
+    flex-direction: row-reverse;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(11, 11, 11, 0.5);
+    z-index: 9999;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 0 auto;
+    .modal-box{
+        max-width: 480px;
+        width: 100%;
+        background: #fff;
+        overflow-y: auto;
+        @include flexbox (flex, column, flex-start, flex-start);  
+        .modal-title{
+            width: 100%;
+            position: relative;
+            margin: 35px 0;
+            font-family: 'CeraPROBold';
+            font-size: 22px;
+            text-align: center;
+            span{
+                position: absolute;
+                top: -30px;
+                right: 15px;
+                font-size: 60px;
+                font-family: Roboto, "Helvetica Neue", sans-serif;
+                cursor: pointer;
+            }
+        }
+        .modal-subtitle{
+            opacity: 0.5;
+            font-size: 14px;
+            margin: 0 auto;
+            text-align: center;
+            max-width: 250px;
+            line-height: 1.42857143;
+        }
+        form{
+            position: relative;
+            width: 100%;
+            div{
+                padding: 0 40px;
+                width: 100%;
+                label{
+                    display: block;
+                    font-weight: 700;
+                    margin-top: 20px;
+                    max-width: 100%;
+                    margin-bottom: 5px;
+                    font-size: 14px;
+                    &:first-child{
+                        margin-top: 30px;
+                    }
+                }
+                select, input, textarea{
+                    font-size: 14px;
+                    &:focus{
+                        box-shadow: none;
+                        border: 1px solid lightgray;
+                    }
+                }
+            }
+            .custom-file-upload{
+                padding-left: 40px;
+                margin-top: 15px;
+                width: 100%;
+                height: 33px;
+                font-size: 14px;
+                font-weight: bold;
+                line-height: 2.14;
+                cursor: pointer;
+                color: $pink;
+                display: flex;
+                svg{
+                    margin-right: 15px;
+                }
+            }
+            .cv-form{
+                display: none;
+                height: 40px;
+                border-radius: 3px;
+                border: solid 1px #ede8e8;
+                width: 100%;
+                padding: 0 15px;
+            }
+            .send{
+                display: inline-block;
+                width: 100%;
+                font-size: 16px;
+                line-height: 70px;
+                background-color: $pink;
+                color: #ffffff;
+                letter-spacing: .9px;
+                font-weight: 700;
+                text-align: center;
+                position: absolute;
+                bottom: -100px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+.aboutVacanciesModal{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #ffffff;
+    z-index: 9999;
+    width: 100%;
+    max-height: 1300px;
+    overflow-y: scroll;
+    .main-box{
+        width: calc(100% - 60px);
+        margin: 30px;
+        min-height: 1300px;
+        border: 1px solid #0d0d0d;
+        position: absolute;
+        top: 0;
+        left: 0;
+        .md-header{
+            display: inline-block;
+            width: auto;
+            height: 70px;
+            padding: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1000000;
+            border: none;
+            @include flexbox (flex, row, flex-start, flex-start);
+            .hide{
+                cursor: pointer;
+                width: 70px;
+                height: 70px;
+                line-height: 70px;
+                text-align: center;
+                color: #ffffff;
+                font-size: 30px;
+                background-color: $pink;
+            }
+            .prev, .next{
+                width: 70px;
+                height: 100%;
+                background-color: $darkPink;
+                span{
+                    width: 54px;
+                    height: 15px;
+                    margin: 28px 8px;
+                }
+            }
+            .prev span{
+                background-image: url(../../../assets/images/prevArrow.svg);
+                background-repeat: no-repeat;
+            }
+            .next{
+                border-left: 1px solid rgb(91, 67, 71);
+                span{
+                    background-image: url(../../../assets/images/nextArrow.svg);
+                    background-repeat: no-repeat;
+                }
+            } 
+        }
+        .vacanciesSectionSlider{
+            width: 100%;
+            padding: 20px;
+            min-height: 1300px;
+            ul{
+                width: calc(100% - 40px);
+                height: 100%;
+                position: absolute;
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: hidden;
+                .slide:focus{
+                    outline: none;
+                    border: none;
+                }
+                .carousel{
+                    li{
+                        width: calc(100vw - 40px);
+                        margin-right: 180px;
+                        height: 100%;
+                        position: relative;
+                        flex: 0 0 auto;
+                        cursor: pointer;
+                        @include flexbox (flex, row, space-between, flex-start);     
+                        div:first-child{
+                            width: 48%;
+                            height: 100%;
+                           img{
+                              width: 100%;
+                              height: 525px;
+                            }
+                        }
+                        div:last-child{
+                          width: 48%;
+                          height: 100%;
+                          .text-header{
+                            width: 100%;
+                            height: 56px;
+                            @include flexbox (flex, row, space-between, center); 
+                            h1{
+                                font-weight: 700;
+                                font-size: 24px;
+                            } 
+                            span{
+                                width: 140px;
+                                padding-left: 15px;
+                            }
+                          }
+                          .description{
+                            width: 85%;
+                            p{
+                                width: 100%;
+                                white-space: pre-wrap;
+                                font-size: 18px;
+                                text-align: justify;
+                                flex-wrap: wrap;
+                            }
+                          }
+                        }
+                        .send-cv{
+                            display: inline-block;
+                            margin-top: 10px;
+                            font-size: 16px;
+                            background: #f19fc1;
+                            color: #ffffff;
+                            letter-spacing: .9px;
+                            padding: 24px 35px;
+                            font-family: 'CeraPROBold';
+                            text-transform: uppercase;
+                            cursor: pointer;
+                            &:focus{
+                                outline: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1275px){
+    .insta-section{
+        padding: 0 10px;
+    }
+}
+@media screen and (max-width: 1065px){
+    .vacancies-details-section{
+        padding: 0;
+        .all-vacancies .vacancy{
+            @include flexbox (flex, column, space-between, flex-start);  
+        }
+    }
+    .advantages-section{
+        .advantages{
+            .subtitle{
+                width: 648px;
+                font-size: 38px;
+            }
+            .advantages-list{
+                div{
+                    width: calc(100%/2);
+                }
+            }
+        }
+    }  
+}
+@media screen and (max-width: 960px){
+    .aboutVacanciesModal{
+        .main-box{
+            width: 100%;
+            margin: 30px 0;
+            height: auto;
+            border: none;
+            .vacanciesSectionSlider{
+                width: 100%;
+                height: auto;
+                ul{
+                    height: auto;
+                    .carousel{
+                        li{
+                            @include flexbox (flex, column, flex-start, flex-start);     
+                            div:first-child{
+                                width: calc(100% - 20px);
+                                height: 450px;
+                                img{
+                                  width: 100%;
+                                  height: 100%;
+                                  &:last-child{
+                                    display: none;
+                                  }
+                                }
+                            }
+                            div:last-child{
+                                width: calc(100% - 20px);
+                                height: auto;
+                              .text-header{
+                                margin-top: 10px;
+                                width: 100%;
+                                @include flexbox (flex, column, center, center);  
+                                span{
+                                    margin-top: 5px;
+                                    text-align: center;
+                                    padding-left: 0;
+                                }
+                              }
+                              .description{
+                                margin-top: 30px;
+                                width: 100%;
+                              }
+                            }
+                            .send-cv{
+                                margin: 30px 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 880px){
+    .vacancies-section{
+        .section-header{
+            padding-top: 100px;
+            .text-wrapper{
+                height: auto;
+                .title-wrapper{
+                    padding-left: 110px;
+                }
+                p{
+                    height: 270px;
+                }
+            }
+        }
+    }   
+}
+@media screen and (max-width: 830px){
+    .advantages-section{
+        .advantages{
+            padding: 40px 25px;
+            .title{
+                width: 260px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 30px;
+            }
+            .subtitle{
+                height: 34px;
+                width: 515px;
+                line-height: 34px;
+                font-size: 30px;
+                .cross-line{
+                    height: 2px;
+                }
+            }
+            .advantages-list{
+                div{
+                    margin: 30px 0;
+                    width: calc(100%);
+                    text-align: center;
+                    .text{
+                        margin: 0 auto;
+                        font-size: 14px;
+                    }
+                    &:before{
+                        height: 2px;
+                        left: calc(50% - 48px);
+                    }
+                }
+            }
+        }
+    }
+    .vacancies-details-section{
+        padding: 0 30px;
+        .section-header{
+            height: 200px;
+            @include flexbox (flex, column, space-between, flex-start);  
+            .section-title-box{
+                width: 100%;
+                height: 100px;
+                padding: 0 25px 20px 23px;
+                .subtitle{
+                    width: 135px;
+                    height: 34px;
+                    line-height: 34px;
+                    font-size: 24px;
+                }
+                &+span{
+                    width: 100%;
+                    height: 75px;
+                    padding: 10px 25px 20px 23px;
+                    font-size: 18px;
+                }
+            }
+        }
+        .all-vacancies{
+            @include flexbox (flex, column, flex-start, flex-start);  
+            .vacancy{
+                width: 100%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 775px){
+    .vacancies-section{
+        .section-header{
+            height: 500px;
+            padding-top: 40px;
+            .text-wrapper{
+                .title-wrapper{
+                    width: 244px;
+                    height: 120px;
+                    padding-left: 40px;
+                    .title{
+                        font-size: 60px;
+                    }
+                }
+                p{
+                    width: 344px;
+                    height: 122px;
+                    font-size: 41px;
+                    margin: 0 auto;
+                    padding: 0;
+                    line-height: 40px;
+                    span:first-child{
+                        position: relative;
+                        .cross-line{
+                            width: 0;
+                            position: absolute;
+                            top: 53%;
+                            left: 2px;
+                        }
+                    }
+                }
+                a{
+                    padding: 14px 35px;
+                }
+            }
+        }
+    } 
+    .insta-section{
+        height: 800px;
+        padding: 0;
+        margin-bottom: 0;
+        .instagram-grid{
+            a{
+                &:first-child{
+                    height: 324px;
+                    margin: 50px 0 0 0;
+                }
+                &:nth-child(2){
+                    height: 370px;
+                }
+                &:nth-child(3){
+                    width: 52.74%;
+                    height: 385px;
+                    margin: 15px 0 0 0;
+                }
+                &:nth-child(4){
+                    margin-top: 15px;
+                    width: 44.5%;
+                    height: 324px;
+                }
+                &:nth-child(5){
+                    display: none;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 580px){
+    .advantages-section{
+        .advantages{
+            .subtitle{
+                width: 428px;
+                font-size: 25px;
+                .cross-line{
+                    height: 2px;
+                }
+            }
+        }
+    } 
+    .insta-section{
+        height: 390px;
+        .instagram-grid{
+            a{
+                &:first-child, &:nth-child(4){
+                    height: 150px;
+                }
+                &:nth-child(2), &:nth-child(3){
+                    height: 180px;
+                }
+            }
+            .insta-label{
+                width: 260px;
+                height: 70px;
+                top: calc(50% - 30px);
+                left: calc(50% - 130px);
+                padding-top: 10px;
+                span:last-child{
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 18px;
+                }
+            }
+        }
+    } 
+}
+@media screen and (max-width: 500px){
+    .advantages-section{
+        .advantages{
+            .subtitle{
+                width: 310px;
+                font-size: 18px;
+                .cross-line{
+                    height: 2px;
+                }
+            }
+        }
+    } 
+    .aboutVacanciesModal{
+        .main-box{
+            .vacanciesSectionSlider ul .carousel li{    
+                div:first-child{
+                    width: 100%;
+                    height: 350px;
+                }
+                div:last-child{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 375px){
+    .vacancies-section .section-header .text-wrapper{
+        .title-wrapper .title{
+            font-size: 50px;
+            margin-left: 25px;
+        }
+        p{
+            width: auto;
+            font-size: 30px;
+        }
+        a{
+            padding: 12px 25px;
+        }
+    }
+    .advantages-section .advantages .subtitle{
+        width: auto;
+        font-size: 14px;
+    } 
+    .aboutVacanciesModal{
+        .main-box{
+            .vacanciesSectionSlider ul .carousel li{    
+                div:first-child{
+                    height: 250px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+<section class="user-data-section">
+    <div class="error-message-box" *ngIf="isDataUpdate">
+        <span class="error-message-title">Ура!</span>
+        <span class="error-message-subtitle">Дані оновлено успішно.</span>
+        <span aria-hidden="true" class="hide" (click)="closeErrorBox()">&times;</span>
+    </div>
+    <div class="error-message-box" *ngIf="isUserBirthday">
+        <span class="icon">🥳</span>
+        <span class="error-message-title">З днем народження!</span>
+        <span class="error-message-subtitle">Уся команда Джи вітає тебе зі святом і дарує 10% знижки на усі послуги.</span>
+        <span aria-hidden="true" class="hide" (click)="closeErrorBox()">&times;</span>
+    </div>
+    <div class="userInfo-box">
+        <form>
+            <div class="form-group">
+                <label for="cityName">Місто</label>
+                <select (change)="setCity()" [(ngModel)]="cityName" name="cityName" class="form-control"
+                    id="gbarCityName">
+                    <option *ngFor="let city of cities" [value]='city?.name'>
+                        {{ city?.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="firstLastName">Ім'я Прізвище</label>
+                <input type="text" [(ngModel)]="firstLastName" name="firstLastName" id="firstLastName"
+                    class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="dateOfBirthday">Дата народження</label>
+                <input type="date" [(ngModel)]="dateOfBirthday" name="dateOfBirthday" id="dateOfBirthday"
+                    class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" [(ngModel)]="email" name="email" id="email" class="form-control">
+            </div>
+            <div class="logout-box" (click)="signOut()">
+                <i class="uil uil-sign-out-alt"></i>
+                <span>Вийти з аккаунту</span>
+            </div>
+        </form>
+    </div>
+    <div class="md-footer">
+        <button type="button" (click)="updateUserData()">ЗБЕРЕГТИ</button>
+    </div>
+</section>

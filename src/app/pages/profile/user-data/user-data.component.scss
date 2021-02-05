@@ -1,0 +1,85 @@
+@import '../../../../assets/styles/mixins';
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/fonts';
+
+.user-data-section{
+    width: 100%;
+    height: auto;
+    .userInfo-box{
+        width: 100%;
+        height: auto;
+        form{
+            margin: 20px auto;
+            margin-top: 150px;
+            width: 450px;
+            .form-group{
+                margin-bottom: 20px;
+                label{
+                    font-size: 14px;
+                    line-height: 2.14;
+                    color: #0b0b0b;
+                    font-family: 'CeraPROBold';
+                }
+                input, select{
+                    border: 1px solid #ede8e8;
+                    height: 40px;
+                    border-radius: 3px;
+                    padding: 0 10px;
+                    font-size: 14px;
+                    font-family: Arial, Helvetica, sans-serif;
+                    color: #0b0b0b;
+                    &::placeholder{
+                        color: lightgray;
+                    }
+                    &:focus{
+                        border-color: $pink;
+                        box-shadow: none;
+                    }
+                }
+            }
+            .logout-box{
+                margin-top: 25px;
+                cursor: pointer;
+                width: auto;
+                @include flexbox (flex, row, flex-start, center);
+                color: $pink;
+                font-family: 'CeraPROBold';
+                font-size: 16px;
+            }
+        }
+    }
+    .md-footer{
+        width: 100%;
+        margin-top: 50px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        button{
+            width: 100%;
+            height: 70px;
+            line-height: 70px;
+            font-size: 16px;
+            font-family: 'CeraPROBold';
+            letter-spacing: 0.89px;
+            color: #FFF;     
+            text-align: center;  
+            border: none;
+            background-color: $pink;
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+}
+@media screen and (max-width: 500px){
+    .user-data-section{
+        width: 100%;
+        .userInfo-box{
+            width: 100%;
+            form{
+                width: 100%;
+                padding: 0 20px;
+            }
+        }
+    }
+}

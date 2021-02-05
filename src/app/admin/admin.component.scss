@@ -1,0 +1,46 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/fonts';
+
+.wrap-admin {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  position: absolute;
+  margin-bottom: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: $lightPink;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.nav-link {
+  height: 50px;
+  line-height: 34px;
+}
+
+.signOut{
+  cursor: pointer;
+  background-color: cadetblue;    
+  font-size: 16px;
+  font-family: 'CeraPROBold';
+  text-align: center;
+}
+
+.dark-mode-text {
+  color: rgb(0, 83, 198);
+  font-size: 16px;
+  font-family: 'CeraPROBold';
+}
+
+.dark-mode {
+  background-color: rgb(0, 83, 198);
+  color: #fefefe;
+}

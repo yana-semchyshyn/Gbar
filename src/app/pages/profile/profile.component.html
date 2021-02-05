@@ -1,0 +1,15 @@
+<section class="profile-section">
+    <div class="md-header">
+        <span (click)="location.back()" (click)="showScroll()"></span>
+        <span aria-hidden="true" [routerLink]="[ '/main' ]" class="hide" (click)="showScroll()">&times;</span>
+        <span>ONLINE ЗАПИС</span>
+    </div>
+    <div class="head-tags">
+        <a [routerLink]="[ 'user-data' ]" routerLinkActive="dark-mode">Мої дані</a>
+        <a [routerLink]="[ 'user-orders' ]" routerLinkActive="dark-mode">Мої записи</a>
+        <a [routerLink]="[ 'user-orders-history' ]" routerLinkActive="dark-mode">Історія</a>
+    </div>
+    <div class="info-box">
+        <router-outlet></router-outlet>
+    </div>
+</section>

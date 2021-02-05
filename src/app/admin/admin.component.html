@@ -1,0 +1,21 @@
+<div class="wrap-admin">
+    <section class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-2">
+                <div class="nav flex-column nav-pills">
+                  <a class="nav-link dark-mode-text" [routerLink]="[ 'cities' ]" routerLinkActive="dark-mode">Міста</a>
+                  <a class="nav-link dark-mode-text" [routerLink]="[ 'services' ]" routerLinkActive="dark-mode">Категорії</a>
+                  <a class="nav-link dark-mode-text" [routerLink]="[ 'menu' ]" routerLinkActive="dark-mode">Послуги</a>
+                  <a class="nav-link dark-mode-text" [routerLink]="[ 'gbars' ]" routerLinkActive="dark-mode">Джи Бари</a>
+                  <a class="nav-link dark-mode-text" [routerLink]="[ 'vacancies' ]" routerLinkActive="dark-mode">Вакансії</a>
+                  <a class="nav-link signOut" (click)="adminSignOut()" style="color: #fefefe;">Вийти</a>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="tab-content">
+                    <router-outlet></router-outlet>
+                </div>
+              </div>
+        </div>
+    </section>
+</div>

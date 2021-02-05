@@ -1,0 +1,32 @@
+<div class="loginModal">
+    <div class="md-header">
+        <span (click)="resetForm()" (click)="location.back()"></span>
+        <span>Адмін</span>
+    </div>
+    <div class="login-box">
+        <span class="icon">🤗</span>
+        <div class="login-title">
+            <h2>Привіт, адмін!<br> Потрібно ввести логін і пароль,<br> щоб підтвердити свою особу.</h2>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="email">Логін</label>
+                <input type="email" [(ngModel)]="email" name="email" id="email" placeholder="Вкажіть логін" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <div class="password-field" *ngIf="!isPassword">
+                    <input type="password" [(ngModel)]="password" name="password" id="password" placeholder="Вкажіть пароль"  class="form-control">
+                    <i class="uil uil-eye" (click)="showPassword()"></i>
+                </div>
+                <div class="password-field" *ngIf="isPassword">
+                    <input type='text' [(ngModel)]="password" name="password" id="password" placeholder="Вкажіть"  class="form-control">
+                    <i class="uil uil-eye" (click)="showPassword()"></i>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="md-footer">
+        <button type="button" (click)="adminSignIn()">УВІЙТИ</button>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+<div class="container header">
+    <p>Категорії</p>
+    <button type="button" class="btn btn-block" (click)="openModal(add, modalCenter)">Нова категорія</button>
+</div>
+<div class="container main-box">
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="так буде швидше.." [(ngModel)]="searchName"
+                name="searchName">
+        </div>
+    </form>
+    <hr>
+    <div style="height: 490px; overflow: scroll">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col" style="width:5%">№</th>
+                    <th scope="col" style="width:10%">Назва</th>
+                    <th scope="col" style="width:20%;">Іконка</th>
+                    <th scope="col" style="width:30%;">Зображення</th>
+                    <th scope="col" style="width:21%;">Фон</th>
+                    <th scope="col" style="width:7%"></th>
+                    <th scope="col" style="width:7%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let service of services | search: searchName; let i=index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ service?.name }}</td>
+                    <td style="text-align: center;"><img [attr.src]='service?.icon'></td>
+                    <td style="text-align: center;"><img [attr.src]='service?.contentFirstImg'><img
+                            [attr.src]='service?.contentSecondImg'></td>
+                    <td style="text-align: center;">
+                        <div [ngStyle]="{'backgroundColor': service?.btnColor}"></div>
+                    </td>
+                    <td>
+                        <button (click)="editService(service)" (click)="openModal(add, modalCenter)" class="btn"><i
+                                class="uil uil-pen"></i></button>
+                    </td>
+                    <td>
+                        <button (click)="openModal(delete, modalSM)" (click)="deleteService(service)" class="btn"><i
+                                class="uil uil-trash-alt"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<ng-template #add>
+    <div class="modal-header">
+        <p class="modal-title pull-left">Додай нову послугу</p>
+        <button type="button" class="close pull-right" aria-label="Close">
+            <span aria-hidden="true" (click)="modalRef.hide()" (click)="resetForm()">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="serviceName">Назва</label>
+            <input [(ngModel)]="serviceName" name="serviceName" type="text" class="form-control" id="serviceName">
+        </div>
+        <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="serviceIcon" (change)="uploadFile($event, true, true)">
+                <label class="custom-file-label" for="serviceIcon">Обери іконку..</label>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="serviceImage"
+                    (change)="uploadFile($event, false, true)">
+                <label class="custom-file-label" for="serviceImage">Обери перше зображення..</label>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="serviceImage"
+                    (change)="uploadFile($event, true, false)">
+                <label class="custom-file-label" for="serviceImage">Обери друге зображення..</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="urlImage" style="margin-right: 10px;">Обери фон кнопки</label>
+            <input type="color" [(ngModel)]="serviceBtnColor" name="serviceBtnColor">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn close" (click)="modalRef.hide()" (click)="resetForm()">Закрити</button>
+        <button *ngIf="!isEdited" type="button" class="btn add" (click)="addService()">Додати</button>
+        <button *ngIf="isEdited" (click)="updateService()" type="button" class="btn edit">Зберегти</button>
+    </div>
+</ng-template>
+<ng-template #delete>
+    <div class="modal-body deleteModal">
+        <button type="button" class="btn dismiss" (click)="deleteSubmit(false)">Відмінити</button>
+        <button type="button" (click)="deleteSubmit(true)" class="btn delete">Видалити</button>
+    </div>
+</ng-template>

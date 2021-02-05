@@ -1,0 +1,89 @@
+<footer>
+    <div class="footer-main-section">
+        <div class="footer-title-block">
+            <span>Не треба соромитися! <br> Давай знайомитися! </span>
+            <div class="social-media">
+                <a href="https://www.instagram.com/g.bar.kiev" target="_blank">
+                    <img src="../../../assets/images/instagram-icon.webp">
+                </a>
+                <a href="https://www.youtube.com/user/ohmylookua" target="_blank">
+                    <img src="../../../assets/images/Youtube-Black-Icon-PNG.webp">
+                </a>
+                <a href="https://www.facebook.com/g.bar.kiev" target="_blank">
+                    <img src="../../../assets/images/facebook-icon_11.webp">
+                </a>
+            </div>
+        </div>
+        <div class="message-to">
+            <div class="message-to-img">
+                <img src="../../../assets/images/girls.webp">
+            </div>
+            <div class="message-to-info-box">
+                <p class="message-to-info" class="col-xs-11">
+                    Привіт! Ми — Сабіна Мусіна, співзасновниця G. Bar, і Лєра Бородіна, співзасновниця G. Bar і
+                    засновниця
+                    сервісу оренди суконь Oh My Look!<br><br>
+                    Джи. з тобою, щоб робити твоє життя простішим, тебе — красивою, а подружок і незнайомців змусити
+                    довго
+                    дивитися услід.<br><br>
+                    Якщо ти хочеш щось запропонувати або в чомусь зізнатися, не соромся, пиши нам!
+                </p>
+                <a class="message-link" (click)="openModal()">НАПИСАТИ</a>
+                <div class="wrap-logo">
+                    <a href="//ohmylook.ua/" target="_blank">
+                        <img src="../../../assets/images/oml.svg">
+                    </a>
+                    <a href="//ohmybook.com.ua/" target="_blank">
+                        <img src="../../../assets/images/omb.svg">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copy-rights-box">
+            <span class="footer-copy-rights">© G.bar, 2020</span>
+            <span class="footer-copy-rights">developed by </span>
+            <span class="footer-copy-rights">
+                <img src="../../../assets/images/zolteco-logo.webp">
+            </span>
+            <span class="footer-copy-rights">design by Yulya Lyulka</span>
+            <span class="footer-copy-rights">
+                <a class="privacy-policy-link" [routerLink]="[ '/privacy-policy' ]">Privacy Policy</a>
+            </span>
+        </div>
+    </div>
+    <div class="footer-services">
+        <span class="footer-title">Послуги</span>
+        <div class="footer-services-block">
+            <span class="footer-service" data-slide="i" *ngFor="let service of currentGbar?.services; let i = index"
+                (click)="openService(i)">{{ service?.name }}</span>
+        </div>
+    </div>
+    <div class="modal-window" *ngIf="isWriteMessage">
+        <div class="modal-box">
+            <span class="hide" aria-hidden="true" (click)="closeModal()">&times;</span>
+            <img class="md-image" src="../../../assets/images/ask-us.webp">
+            <div class="md-form">
+                <p class="md-title">Написати Лєрі та Сабіні</p>
+                <div>
+                    <input type="text" [(ngModel)]="name" name="name" id='name' class="name">
+                    <label for="name">Ім'я</label>
+                </div>
+                <div>
+                    <input type="email" [(ngModel)]="email" name='email' id='email' class="email">
+                    <label for="email">Email</label>
+                </div>
+                <div>
+                    <input type="text" [(ngModel)]="phoneNumber" name="phoneNumber" id='phoneNumber' class="phoneNumber">
+                    <label for="phoneNumber">Телефон</label>
+                </div>
+                <div>
+                    <textarea [(ngModel)]="message" name="message" id="message" class="form-control" rows="3"></textarea>
+                    <label for="message" class="form-label">Повідомлення</label>
+                </div>
+                <div class='btn-send'>
+                    <span (click)="sendDataToTelegram()">Надіслати</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

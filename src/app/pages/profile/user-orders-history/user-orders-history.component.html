@@ -1,0 +1,23 @@
+<div class="orders-history-box">
+    <div class="userOrder" *ngFor="let order of userOrdersHistory">
+        <div class="order-header">
+            <div class="gbar-info">
+                <img [attr.src]='order?.gbar.icon' class="select-icon">
+                <span>{{ order?.gbar?.name }}</span>
+                <span>{{ order?.gbar?.city?.name }}</span>
+            </div>
+            <div class="order-info">
+                <span>{{ order?.date }}</span>
+                <span>{{ order?.totalTime }}</span>
+                <span>{{ order?.totalPrice }} UAH</span>
+            </div>
+        </div>
+        <div class="services-box">
+            <ul>
+                <li *ngFor="let service of order?.services">
+                    <span>{{ service?.name }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

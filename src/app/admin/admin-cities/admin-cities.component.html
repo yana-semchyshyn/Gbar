@@ -1,0 +1,65 @@
+<div class="container header">
+    <p>Міста</p>
+    <button type="button" class="btn btn-block" (click)="openModal(add, modalCentered)">Додати місто</button>
+</div>
+<div class="container main-box">
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="так буде швидше.." [(ngModel)]="searchName"
+                name="searchName">
+        </div>
+    </form>
+    <hr>
+    <div style="height: 490px; overflow: scroll">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col" style="width:3%">№</th>
+                    <th scope="col" style="width:83%" colspan="2">Назва</th>
+                    <th scope="col" style="width:7%;"></th>
+                    <th scope="col" style="width:7%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let city of cities | search: searchName; let i=index">
+                    <td>{{ i+1 }}</td>
+                    <td colspan="2">{{ city?.name }}</td>
+                    <td>
+                        <button (click)="editCity(city)" (click)="openModal(add, modalCentered)" class="btn"><i
+                                class="uil uil-pen"></i></button>
+                    </td>
+                    <td>
+                        <button (click)="deleteCity(city)" (click)="openModal(delete, modalSM)" class="btn"><i
+                                class="uil uil-trash-alt"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<ng-template #add>
+    <div class="modal-header">
+        <p class="modal-title pull-left">Додай місто</p>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"
+            (click)="resetForm()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="cityName">Назва</label>
+            <input [(ngModel)]="cityName" name="cityName" type="text" class="form-control" id="cityName">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn close" (click)="modalRef.hide()" (click)="resetForm()">Закрити</button>
+        <button *ngIf="!isEdited" type="button" class="btn add" (click)="addCity()">Додати</button>
+        <button *ngIf="isEdited" (click)="updateCity()" type="button" class="btn edit">Зберегти</button>
+    </div>
+</ng-template>
+<ng-template #delete>
+    <div class="modal-body deleteModal">
+        <button type="button" class="btn dismiss" (click)="deleteSubmit(false)">Відмінити</button>
+        <button type="button" class="btn delete" (click)="deleteSubmit(true)">Видалити</button>
+    </div>
+</ng-template>

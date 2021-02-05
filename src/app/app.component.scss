@@ -1,0 +1,49 @@
+@import '../assets/styles/mixins';
+@import '../assets/styles/variables';
+@import '../assets/styles/fonts';
+
+.col-xl-12{
+  padding: 20px 20px;
+  min-height: 800px;
+  position: relative;
+  .top-section{
+    position: relative;
+    @include flexbox (flex, row, flex-start, flex-start);
+    .admin-block a {
+      position: fixed;
+      top: 130px;
+      right: 0;
+      padding: 10px;
+      z-index: 1000;
+      font-family: 'CeraProBold';
+      border: 1px solid rgb(0, 83, 198);
+      font-size: 15px;
+      line-height: 16px;
+      color: $lightPink;
+      background:  rgb(0, 83, 198);
+      border-radius: 10px 0 0 10px;
+      transition-property: padding-right;
+      transition-duration: 0.7s;
+      &:hover {
+        padding: 10px 30px 10px 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1275px) {
+  .col-xl-12{
+    padding: 0;
+    .top-section{
+      width: 100%;
+      @include flexbox (flex, column, flex-start, flex-start);
+      app-header{
+        width: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}
+

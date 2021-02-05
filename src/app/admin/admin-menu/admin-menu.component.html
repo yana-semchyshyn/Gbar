@@ -1,0 +1,72 @@
+<div class="container header">
+    <p>Послуги</p>
+    <button type="button" class="btn btn-block" (click)="openModal(add, modalCentered)">Додати послугу</button>
+</div>
+<div class="container main-box">
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="так буде швидше.." [(ngModel)]="searchName"
+                name="searchName">
+        </div>
+    </form>
+    <hr>
+    <div style="height: 490px; overflow: scroll">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col" style="width:3%">№</th>
+                    <th scope="col" style="width:73%" colspan="2">Назва</th>
+                    <th scope="col" style="width:10%">Час виконання</th>
+                    <th scope="col" style="width:7%;"></th>
+                    <th scope="col" style="width:7%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of menu | search: searchName; let i=index">
+                    <td>{{ i+1 }}</td>
+                    <td colspan="2">{{ item?.name }}</td>
+                    <td>{{ item?.time }}</td>
+                    <td>
+                        <button (click)="editMenuItem(item)" (click)="openModal(add, modalCentered)" class="btn"><i
+                                class="uil uil-pen"></i></button>
+                    </td>
+                    <td>
+                        <button (click)="deleteMenuItem(item)" (click)="openModal(delete, modalSM)" class="btn"><i
+                                class="uil uil-trash-alt"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<ng-template #add>
+    <div class="modal-header">
+        <p class="modal-title pull-left">Додай послугу</p>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"
+            (click)="resetForm()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="menuItemName">Назва</label>
+            <input [(ngModel)]="menuItemName" name="menuItemName" type="text" class="form-control" id="menuItemName">
+        </div>
+        <div class="form-group">
+            <label for="menuItemTime">Час виконання</label>
+            <input [(ngModel)]="menuItemTime" name="menuItemTime" type="text" class="form-control" id="menuItemTime">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn close" (click)="modalRef.hide()">Закрити</button>
+        <button *ngIf="!isEdited" type="button" class="btn add" (click)="addMenuItem()">Додати</button>
+        <button *ngIf="isEdited" (click)="updateMenuItem()" type="button" class="btn edit">Зберегти</button>
+    </div>
+</ng-template>
+<ng-template #delete>
+    <div class="modal-body deleteModal">
+        <button type="button" class="btn dismiss" (click)="deleteSubmit(false)"
+            (click)="modalRef.hide()">Відмінити</button>
+        <button type="button" (click)="deleteSubmit(true)" class="btn delete">Видалити</button>
+    </div>
+</ng-template>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "gbar-3cd96": {
+      "hosting": {
+        "GBar": [
+          "gbar-3cd96"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "gbar-3cd96"
+  }
+}

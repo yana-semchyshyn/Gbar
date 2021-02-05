@@ -1,0 +1,175 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/fonts';
+
+.header{
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: $darkPink;
+    p{
+        font-size: 26px;
+        line-height: 40px;
+        margin: 0;
+        font-family: "AdleryPro";
+        color: #fefefe;
+    }
+    button{
+        width: 150px;
+        height: 40px;
+        font-size: 16px;
+        font-family: 'CeraPROBold';
+        color: $lightPink;
+        background-color:  rgb(0, 83, 198);
+    }
+}
+.main-box{
+    overflow: auto;
+    background-color: #fefefe;
+    padding: 20px;
+    border: 2px solid $darkPink;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    input{
+        border: 2px solid $lightPink;
+        color: $darkPink;
+        font-family: 'CeraPROLight';
+    }
+    input::placeholder{
+        color: rgb(0, 83, 198);
+        font-weight: bolder;
+    }
+    input:focus{
+        box-shadow: none;
+    }
+    hr{
+        height: 2px;
+        background-color: $pink;
+    }
+}
+
+table{
+    border: none;
+    overflow: auto;
+    th{
+        font-size: 20px;
+        color: rgb(0, 83, 198);
+        background-color: transparent;
+        border-top: none;
+        &:first-child{
+            border-left: none;
+        }
+        &:last-child{
+            border-right: none;
+        }
+    }
+    td{
+        align-items: center;
+        vertical-align: middle;
+        color: $darkPink;  
+        &:first-child{
+            border-left: none;
+        }
+        &:last-child{
+            border-right: none;
+        }
+        .btn{
+            color: rgb(0, 83, 198);
+            font-size: 24px;
+            &:focus{
+                box-shadow: none;
+            }
+            &:hover{
+                font-size: 26px;
+            }
+        }
+    }
+}
+
+.modal-header{
+    background-color: rgb(0, 83, 198);
+    p{
+        font-size: 26px;
+        line-height: 40px;
+        margin: 0;
+        font-family: "AdleryPro";
+        color: #fefefe;
+    }
+    button{
+        background-color: transparent;
+        font-size: 26px;
+        color: #fefefe;
+        border: none;
+        outline: none;
+    }
+}
+.modal-body{
+    div{
+        margin-bottom: 15px;
+        label{
+        margin-bottom: 5px;
+        font-size: 16px;
+        font-family: 'CeraPROBold';
+        color: rgb(0, 83, 198);
+        }
+        input, .input-group{
+            border: 2px solid $lightPink;
+            color: $darkPink;
+        }
+        input:focus{
+            box-shadow: none;
+        }    
+    }
+}
+
+.modal-footer{
+    button{
+        min-width: 80px;
+        height: 36px;
+        background-color: transparent;
+        font-size: 16px;
+        font-family: 'CeraPROBold';
+        color: #fefefe;
+        border: none;
+        outline: none;  
+    }
+    button:focus{
+        box-shadow: none;
+    }
+    .add, .edit{
+        background-color: $pink;
+        &:hover{
+            background-color: $darkPink;
+        }
+    }
+    .close{
+        background-color: rgb(0, 83, 198);       
+    }
+}
+
+.deleteModal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    button{
+        margin-right: 5px;
+        width: 130px;
+        height: 50px;
+        color: #fefefe;
+        font-family: 'CeraPROBold';
+    }
+    .dismiss{
+        background-color: gray;
+        &:hover{
+            background-color: rgb(93, 90, 90);     
+        }
+    }
+    .delete{
+        background-color: #9074a3;
+        &:hover{
+            background-color: #8a5da7;    
+        }
+    }
+}

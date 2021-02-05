@@ -1,0 +1,323 @@
+<header>
+    <div class="mobile-menu-opener" (click)="openMobileMenu()">
+        <div class="mobile-burger">
+            <span></span>
+        </div>
+        <a><img src="../../../assets/images/gbar-logo2.webp"></a>
+    </div>
+    <ul>
+        <li><a [routerLink]="[ '/main' ]"><img src="../../../assets/images/gbar-logo3.webp"></a></li>
+        <li><a [routerLink]="[ '/vacancies' ]">ВАКАНСІЇ</a></li>
+        <li><a href="#about">ПРО НАС</a></li>
+        <li><a href="#services">ПОСЛУГИ</a></li>
+        <li><a [routerLink]="[ '/vacancies' ] " fragment="our-works">НАШІ РОБОТИ</a></li>
+        <li><a href="#beauty-bars">САЛОНИ</a></li>
+        <li><a href="#franchise">ФРАНЧАЙЗИНГ</a></li>
+    </ul>
+    <div class="header-buttons">
+        <a href="https://apps.apple.com/ru/app/g-bar/id1231422460" target="_blank" class="app">
+            <div></div>
+        </a>
+        <a class="online-order" (click)="onlineOrderModalStatus(true)">ЗАПИСАТИСЯ ОНЛАЙН</a>
+        <a [routerLink]="[ '/profile' ]" class="profile" *ngIf="isUser"><i class="uil uil-user"></i></a>
+        <a class="profile" *ngIf="!isUser" (click)="loginModalStatus(true)"><i class="uil uil-user"></i></a>
+    </div>
+</header>
+<div class="mobile-menu" [class.slide-down]='isOpened' [class.slide-up]='!isOpened'>
+    <span class="close-menu" (click)="closeMobileMenu()"></span>
+    <div>
+        <ul>
+            <li><a><img src="../../../assets/images/gbar-logo2.webp"></a></li>
+            <li *ngIf="isUser"><a [routerLink]="[ '/profile' ]" (click)="closeMobileMenu()">Особистий кабінет</a></li>
+            <li *ngIf="!isUser"><a (click)="loginModalStatus(true)" (click)="closeMobileMenu()">Особистий кабінет</a>
+            </li>
+            <li><a [routerLink]="[ '/vacancies' ]" (click)="closeMobileMenu()">Вакансії</a></li>
+            <li><a href="#about" (click)="closeMobileMenu()">Про нас</a></li>
+            <li><a href="#services" (click)="closeMobileMenu()">Послуги</a></li>
+            <li><a [routerLink]="[ '/vacancies' ] " fragment="our-works" (click)="closeMobileMenu()">Наші роботи</a>
+            </li>
+            <li><a href="#beauty-bars" (click)="closeMobileMenu()">Салони</a></li>
+            <li><a href="#franchise" (click)="closeMobileMenu()">Франчайзинг</a></li>
+        </ul>
+        <div class="menu-app-wrapper">
+            <a href="https://apps.apple.com/ru/app/g-bar/id1231422460" target="_blank" class="app">
+                <img src="../../../assets/images/apple-logo.webp">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="aboutServiceModal" *ngIf="isModal">
+    <div class="md-header">
+        <span aria-hidden="true" (click)="closeModal()" class="hide">&times;</span>
+        <div *ngIf="!isFirst" (click)="prev()" class="prev">
+            <span></span>
+        </div>
+        <div *ngIf="!isLast" (click)="next()" class="next">
+            <span></span>
+        </div>
+    </div>
+    <div class="col-xs-12 servicesSectionSlider" id="servicesSectionSlider">
+        <ul>
+            <ngx-slick-carousel class="carousel slider" #slickServiceModal="slick-carousel" [config]="slideConfigSerDetails"
+                (afterChange)="afterChange($event)">
+                <li ngxSlickItem class="slide" *ngFor="let service of currentGbar?.services; let i=index">
+                    <div>
+                        <img [attr.src]='service?.contentFirstImg'>
+                        <img [attr.src]='service?.contentSecondImg'>
+                    </div>
+                    <div>
+                        <span class="emptySpace"></span>
+                        <img [attr.src]='service?.icon'>
+                        <span class="emptySpace"></span>
+                    </div>
+                    <div>
+                        <span class="serviceTitle">{{ service?.name }}</span>
+                        <img [attr.src]='service?.contentFirstImg'>
+                        <div class="serviceSubtitle">
+                            <span>Послуга</span>
+                            <span>Ціна</span>
+                        </div>
+                        <div class="menu-box">
+                            <div *ngFor="let menuItem of service?.menu">
+                                <span>{{ menuItem?.name }}</span>
+                                <div class="price">
+                                    <span class="service-info" *ngIf="isUserBirthday">{{
+                                        (menuItem?.price * 90/100).toFixed() }} UAH</span>
+                                    <span [style.text-decoration]='textDecoration' class="discount">{{ menuItem?.price }}
+                                        UAH</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ngx-slick-carousel>
+        </ul>
+    </div>
+</div>
+<div class="loginModal" *ngIf="isLoginModal">
+    <div class="md-header">
+        <span (click)="loginModalStatus(false)" (click)="resetForm()"></span>
+        <span>ONLINE ЗАПИС</span>
+    </div>
+    <div class="login-box" *ngIf="isLogin">
+        <span class="icon">🤗</span>
+        <div class="login-title">
+            <h2>Привіт!<br> Потрібно авторизуватися, перед тим<br> як записуватися.</h2>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="email">Логін</label>
+                <input type="email" [(ngModel)]="email" name="email" id="email" placeholder="Вкажи логін" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <div class="password-field" *ngIf="!isPassword">
+                    <input type="password" [(ngModel)]="password" name="password" id="password" placeholder="Вкажи пароль" class="form-control">
+                    <i class="uil uil-eye" (click)="showPassword()"></i>
+                </div>
+                <div class="password-field" *ngIf="isPassword">
+                    <input type='text' [(ngModel)]="password" name="password" id="password" placeholder="Вкажи пароль" class="form-control">
+                    <i class="uil uil-eye" (click)="showPassword()"></i>
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="signUp-btn" (click)="openSignUpBox()" (click)="resetForm()">Все ще не зареєстровані?</span>
+            </div>
+            <div class="error-message-box" *ngIf='isNotValidSignInData'>
+                <span class="error-message-title">Упс!</span>
+                <span class="error-message-subtitle">Ти ввела(-ів) неправильний логін або пароль.</span>
+                <span aria-hidden="true" (click)="closeErrorBox()" class="hide" (click)="closeErrorBox()">&times;</span>
+            </div>
+        </form>
+    </div>
+    <div class="signUp-box" *ngIf="!isLogin">
+        <span class="icon">🥰</span>
+        <div class="login-title">
+            <h2>Реєстрація</h2>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="phoneNumber">Телефон</label>
+                <input type="text" [(ngModel)]="phoneNumber" name="phoneNumber" id="phoneNumber"
+                    placeholder="Вкажи номер телефону" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="cityName">Місто</label>
+                <select (change)="setCity()" [(ngModel)]="cityName" name="cityName" class="form-control"
+                    id="gbarCityName">
+                    <option disabled selected>Обери місто</option>
+                    <option *ngFor="let city of cities">
+                        {{ city?.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="firstLastName">Ім'я Прізвище</label>
+                <input type="text" [(ngModel)]="firstLastName" name="firstLastName" id="firstLastName"
+                    placeholder="Вкажи ім'я та прізвище" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="dateOfBirthday">Дата народження</label>
+                <input type="date" [(ngModel)]="dateOfBirthday" name="dateOfBirthday" id="dateOfBirthday"
+                    placeholder="Вкажи дату народження (дд.мм.рррр)" class="form-control">
+
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" [(ngModel)]="email" name="email" id="email" placeholder="Вкажи email"
+                    class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <div class="password-field" *ngIf="!isPassword">
+                    <input type="password" [(ngModel)]="password" name="password" id="password"
+                        placeholder="Вкажи пароль" class="form-control">
+                    <i class="uil uil-eye" (click)="showPassword()"></i>
+                </div>
+                <div class="password-field" *ngIf="isPassword">
+                    <input type='text' [(ngModel)]="password" name="password" id="password" placeholder="Вкажи"
+                        class="form-control">
+                    <i class="uil uil-eye" (click)="showPassword()"></i>
+                </div>
+            </div>
+            <div class="error-message-box" *ngIf='isNotValidSignUpData'>
+                <span class="error-message-title">Упс!</span>
+                <span class="error-message-subtitle">Заповни правильно усі поля.</span>
+                <span aria-hidden="true" (click)="closeErrorBox()" class="hide" (click)="closeErrorBox()">&times;</span>
+            </div>
+            <div class="error-message-box" *ngIf='isNotValidEmail'>
+                <span class="error-message-title">Упс!</span>
+                <span class="error-message-subtitle">Цей логін уже використовується, спробуй обрати інший.</span>
+                <span aria-hidden="true" (click)="closeErrorBox()" class="hide" (click)="closeErrorBox()">&times;</span>
+            </div>
+        </form>
+    </div>
+    <div class="md-footer">
+        <button type="button" *ngIf="isLogin" (click)="signIn()">УВІЙТИ</button>
+        <button type="button" *ngIf="!isLogin" (click)="signUp()">ЗАРЕЄСТРУВАТИСЯ</button>
+    </div>
+</div>
+<div class="onlineOrderModal" *ngIf="isOnlineOrderModal">
+    <div class="md-header">
+        <span (click)="goBack()"></span>
+        <span aria-hidden="true" (click)="onlineOrderModalStatus(false)" class="hide">&times;</span>
+        <span>ONLINE ЗАПИС</span>
+    </div>
+    <div class="select-container" *ngIf="isChooseGBar">
+        <div class="select-title">
+            <h2>Обери G.Bar</h2>
+        </div>
+        <div class="select-box-wrapper">
+            <div class="select-box" *ngFor="let gbar of currentGbars;let i = index" (click)="chooseGbar(gbar)">
+                <div class="img-wrapper">
+                    <img [attr.src]='gbar?.icon' class="select-icon">
+                </div>
+                <span class="select-name">{{ gbar?.name }}</span>
+                <span class="gbar-address">{{ gbar?.address }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="select-container" *ngIf="isChooseCategory">
+        <div class="select-title">
+            <h2>Обери напрямок</h2>
+        </div>
+        <div class="select-box-wrapper">
+            <div class="select-box" *ngFor="let category of currentCategories; let i = index"
+                (click)="selectCategory(i, category)">
+                <div class="img-wrapper">
+                    <img [attr.src]='category?.icon' class="select-icon">
+                    <div class="chosen-category" style="display: none;">
+                        <i class="uil uil-check"></i>
+                    </div>
+                </div>
+                <span class="select-name">{{ category?.name }}</span>
+            </div>
+        </div>
+        <div class="error-message-box" *ngIf="isNotSelectCategory">
+            <span class="error-message-title">Упс!</span>
+            <span class="error-message-subtitle">Потрібно обрати напрямок.</span>
+            <span aria-hidden="true" class="hide" (click)="closeErrorBox()">&times;</span>
+        </div>
+    </div>
+    <div class="select-services-container" *ngIf="isChooseServices">
+        <div class="select-services-box" *ngFor="let category of chosenCategories; let i=index">
+            <div class="select-title">
+                <h2>{{ category?.name }}</h2>
+            </div>
+            <div class="services" *ngFor="let service of category.menu; let i=index"
+                style="background-color: transparent;" (click)="selectService(service)">
+                <span class="serviceName">{{ service?.name }}</span>
+                <span class="service-info">{{ service?.time }}</span>
+                <div class="price">
+                    <span class="service-info" *ngIf="isUserBirthday">{{ (service?.price * 90/100).toFixed() }} UAH</span>
+                    <span class="service-info" [style.text-decoration]='textDecoration'>{{ service?.price }} UAH</span>
+                </div>
+            </div>
+        </div>
+        <div class="error-message-box" *ngIf="isNotSelectService">
+            <span class="error-message-title">Упс!</span>
+            <span class="error-message-subtitle">Потрібно обрати послугу.</span>
+            <span aria-hidden="true" class="hide" (click)="closeErrorBox()">&times;</span>
+        </div>
+    </div>
+    <div class="order-form-container" *ngIf="isSendOrder">
+        <div class="select-services-box">
+            <div class="select-title">
+                <h2>Заповни форму</h2>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="gbarName">G.Bar</label>
+                    <input type="text" id="gbarName" [(ngModel)]="gbarName" name='gbarName' readonly
+                        class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="userName">Ім'я Прізвище</label>
+                    <input type="text" [(ngModel)]="firstLastName" name="firstLastName" id="userName"
+                        class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="userPhoneNumber">Телефон</label>
+                    <input type="text" [(ngModel)]="phoneNumber" name="phoneNumber" id="userPhoneNumber"
+                        class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="date">Дата</label>
+                    <input type="date" [(ngModel)]="date" name="date" id="date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="totalPrice">Ціна</label>
+                    <input type="text" [(ngModel)]="totalPrice" name="totalPrice" id="totalPrice" class="form-control"
+                        readonly>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Коментар</label>
+                    <textarea class="form-control" id="comment" rows="3" [(ngModel)]="comment"
+                        name="comment"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="error-message-box" *ngIf="isNotValidOrderForm">
+            <span class="error-message-title">Упс!</span>
+            <span class="error-message-subtitle">Заповни правильно усі поля.</span>
+            <span aria-hidden="true" class="hide" (click)="closeErrorBox()">&times;</span>
+        </div>
+    </div>
+    <div class="md-footer">
+        <button type="button" *ngIf="isChooseCategory" (click)="goToServices()" class="forward-btn">ДАЛІ</button>
+        <div class="onlineOrderBtns" *ngIf="isChooseServices">
+            <div class="total-info">
+                <div><span>Загальний час</span></div>
+                <div><span>{{ duration }}</span></div>
+                <div><span>Загальна сума</span></div>
+                <div><span>{{ totalPrice }} UAH</span></div>
+            </div>
+            <div class="btns-box">
+                <button type="button" class="addServiceBtn" *ngIf="isChooseServices" (click)="backToCategories()">ДОДАТИ
+                    ПОСЛУГУ</button>
+                <button type="button" class="orderBtn" *ngIf="isChooseServices" (click)="goToOrderForm()">ДАЛІ</button>
+            </div>
+        </div>
+        <button type="button" *ngIf="isSendOrder" (click)="createOrder()" class="forward-btn">ЗАПИСАТИСЯ</button>
+    </div>
+</div>

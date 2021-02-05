@@ -1,0 +1,153 @@
+<div class="container header">
+    <p>Джи Бари</p>
+    <button type="button" class="btn btn-block createNewGBarBtn" (click)="openModal(true)">Додати Джи Бар</button>
+</div>
+<div class="container main-box">
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="так буде швидше.." [(ngModel)]="searchName"
+                name="searchName">
+        </div>
+    </form>
+    <hr>
+    <div style="height: 490px; overflow: scroll">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col" style="width:6%">№</th>
+                    <th scope="col" style="width:10%">Місто</th>
+                    <th scope="col" style="width:15%;">Назва</th>
+                    <th scope="col" style="width:15%;">Іконка</th>
+                    <th scope="col" style="width:15%;">Дані</th>
+                    <th scope="col" style="width:25%;">Послуги</th>
+                    <th scope="col" style="width:7%"></th>
+                    <th scope="col" style="width:7%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let gbar of gbars | search: searchName; let i=index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ gbar?.city?.name }}</td>
+                    <td>{{ gbar?.name }}</td>
+                    <td style="text-align: center;"><img [attr.src]='gbar.icon'></td>
+                    <td>
+                        <span>{{ gbar?.address }}</span>
+                        <span>{{ gbar?.phoneNumber }}</span>
+                    </td>
+                    <td>
+                        <div *ngFor="let service of gbar.services">
+                            <span style="margin-bottom: 10px;">{{ service?.name }}</span>
+                        </div>
+                    </td>
+                    <td style='text-align: center;'>
+                        <button (click)="editGbar(gbar)" (click)="openModal(true)" class="btn"><i
+                                class="uil uil-pen"></i></button>
+                    </td>
+                    <td style='text-align: center;'>
+                        <button (click)="openDeleteModal(delete, modalSM)" (click)="getGbar(gbar)" class="btn"><i
+                                class="uil uil-trash-alt"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="addModal" *ngIf="isAddModal">
+    <div class="addModal-box">
+        <div class="modal-header">
+            <p class="modal-title pull-left">Додай Джи Бар</p>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="resetForm()"
+                (click)="openModal(false)">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="gbarCityName">Місто</label>
+                <select (change)="setCity()" [(ngModel)]="gbarCityName" name="gbarCityName" class="form-control"
+                    id="gbarCityName">
+                    <option *ngFor="let city of cities">
+                        {{ city?.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gbarName">Назва</label>
+                <input [(ngModel)]="gbarName" name="gbarName" type="text" class="form-control" id="gbarName">
+            </div>
+            <div class="form-group">
+                <label for="gbarAdress">Адреса</label>
+                <input [(ngModel)]="gbarAddress" name="gbarAddress" type="text" class="form-control" id="gbarAdress">
+            </div>
+            <div class="form-group">
+                <label for="gbarPhoneNum">Номер телефону</label>
+                <input [(ngModel)]="gbarPhoneNum" name="gbarPhoneNum" type="text" class="form-control"
+                    id="gbarPhoneNum">
+            </div>
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="gbarIcon" (change)="uploadFile($event)">
+                    <label class="custom-file-label" for="gbarIcon">Обери іконку...</label>
+                </div>
+            </div>
+            <div class="form-group select-services">
+                <label for="gbarServiceName" style="margin-top: 10px;">Категорії</label>
+                <select [(ngModel)]="gbarServiceName" name="gbarServiceName" class="form-control" id="gbarServiceName">
+                    <option selected disabled>Обери категорію</option>
+                    <option *ngFor="let service of services;">
+                        {{service?.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="addMenuItems-box">
+                <div class='form-group'>
+                    <label for="menuItemName" style="margin-top: 10px;">Назва послуги</label>
+                    <select [(ngModel)]="menuItemName" name="menuItemName" class="form-control" id="menuItemName">
+                        <option selected disabled>Обери послугу</option>
+                        <option *ngFor="let item of menu;">
+                            {{item?.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <label for="menuItemPrice" style="margin-top: 10px;">Ціна</label>
+                    <input [(ngModel)]="menuItemPrice" name="menuItemPrice" type="number" class="form-control"
+                        id="menuItemPrice">
+                </div>
+                <button type="button" class="btn btn-block" (click)="addMenuItem()">Додати послугу</button>
+            </div>
+            <div class="addedMenuItems" *ngIf="isMenuItems">
+                <p *ngFor="let menuItem of currentMenu; let i = index">{{ menuItem?.name }}: {{ menuItem?.price }} UAH
+                    <span (click)='deleteChosenMenuItem(i)' aria-hidden="true">&times;</span>
+                </p>
+                <button type="button" class="btn btn-block" *ngIf="!isMenuItemBtn"
+                    (click)="addCategory()">Додати</button>
+                <button type="button" class="btn btn-block" *ngIf="isMenuItemBtn"
+                    (click)="updateCategory()">Зберегти</button>
+            </div>
+            <div class="chosen-services-box">
+                <div *ngFor="let service of currentServices; let i = index" (click)="showCertainMenu(i)">
+                    <span class="chosen-service" (click)="menuStatus()">{{ service.name }}
+                    <span class="deleteService" (click)='deleteChosenService(i)' aria-hidden="true">&times;</span>
+                    <ul style="display: none;">
+                        <i class="uil uil-pen" (click)="editCategory(i)"></i>
+                        <li *ngFor="let currentMenuItem of service?.menu">{{ currentMenuItem?.name }}: {{
+                            currentMenuItem?.price }} UAH</li>
+                    </ul>
+                </span><br>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn close" (click)="resetForm()" (click)="openModal(false)">Закрити</button>
+            <button *ngIf="!isEdited" type="button" class="btn add" (click)="addGbar()">Додати</button>
+            <button *ngIf="isEdited" (click)="updateGbar()" type="button" class="btn edit">Зберегти</button>
+        </div>
+    </div>
+</div>
+<ng-template #delete>
+    <div class="modal-body deleteModal">
+        <button type="button" class="btn dismiss" (click)="modalRef.hide()">Відмінити</button>
+        <button type="button" class="btn delete" (click)="deleteGbar(gbar)" (click)="modalRef.hide()">Видалити</button>
+    </div>
+</ng-template>

@@ -1,0 +1,29 @@
+<div class="orders-box">
+    <div class="userOrder" *ngFor="let order of userOrders">
+        <div class="order-header">
+            <div class="gbar-info">
+                <img [attr.src]='order?.gbar.icon' class="select-icon">
+                <span>{{ order?.gbar?.name }}</span>
+                <span>{{ order?.gbar?.city?.name }}</span>
+            </div>
+            <div class="order-info">
+                <span>{{ order?.date }}</span>
+                <span>{{ order?.totalTime }}</span>
+                <span>{{ order?.totalPrice }} UAH</span>
+            </div>
+        </div>
+        <div class="services-box">
+            <ul>
+                <li *ngFor="let service of order.services">
+                    <span>{{ service?.name }}:</span>
+                    <span>{{ service?.price }} UAH</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="error-message-box" *ngIf="isOrderMessage">
+        <span class="error-message-title">Ура!</span>
+        <span class="error-message-subtitle">Дякуємо за те, що обрала(-в) нас.<br> Чекай нашого дзвінка😉 <br> Ми зв'яжемося з тобою, щоб уточнити вільний час.</span>
+        <span aria-hidden="true" class="hide" (click)="closeErrorBox()">&times;</span>
+    </div>
+</div>

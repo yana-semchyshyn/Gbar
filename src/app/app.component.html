@@ -1,0 +1,11 @@
+<div class="col-xl-12">
+    <div class="top-section">
+        <div class="admin-block" *ngIf="isAdmin">
+            <a [routerLink]="[ '/admin' ]">Admin</a>
+        </div>
+        <app-header *ngIf="isHeader"></app-header>
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer *ngIf="isFooter"></app-footer>
+</div>
+<ngx-ui-loader></ngx-ui-loader>
